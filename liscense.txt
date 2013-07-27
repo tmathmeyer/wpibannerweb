@@ -1,16 +1,16 @@
 +=====================================+
-|									  |
-|	The Ted Meyer awesome liscense	  |
-|									  |
+|                                     |
+|    The Ted Meyer awesome liscense   |
+|                                     |
 +=====================================+
 
 distribution:
-	if you distribute this code, you must apply this liscense to it
-	if you distribute this code, you must link to the github repo from whence it came
-	you cant sell the code, or the compiled versions of the code, you can however, give it away
+    if you distribute this code, you must apply this liscense to it
+    if you distribute this code, you must link to the github repo from whence it came
+    you cant sell the code, or the compiled versions of the code, you can however, give it away
 
 liscense:
-	any changes to this liscence are retroactive
+    any changes to this liscence are retroactive
 
 code:
-	you must add yourself as an author to a piece of code if and only if you make a functional change to it (whitespace is not functional, neither are non-javadoc comments)
+    you must add yourself as an author to a piece of code if and only if you make a functional change to it (whitespace is not functional, neither are non-javadoc comments)
