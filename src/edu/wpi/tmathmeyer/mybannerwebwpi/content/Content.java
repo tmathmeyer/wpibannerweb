@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import edu.wpi.tmathmeyer.mybannerwebwpi.WebReader;
+import edu.wpi.tmathmeyer.mybannerwebwpi.page.MailBox;
+import edu.wpi.tmathmeyer.mybannerwebwpi.page.MealPlan;
+import edu.wpi.tmathmeyer.mybannerwebwpi.page.Page;
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -26,18 +29,18 @@ public class Content implements Runnable{
 	public static Map<String, Item> ITEM_MAP = new HashMap<String, Item>();
 
 	static {
-		addItem(new Item("Addresses and Phones", "bwgkogad.P_SelectAtypView"));
-		addItem(new Item("Email Addresses", "bwgkogad.P_SelectEmalView"));
-		addItem(new Item("Mail Box Information", "hwwkboxs.P_ViewBoxs"));
-		addItem(new Item("Meal Plan Balances", "hwwkcbrd.P_Display"));
-		addItem(new Item("Emergency Contacts", "bwgkoemr.P_ViewEmrgContacts"));
+		addItem(new Item(null, "Addresses and Phones", "bwgkogad.P_SelectAtypView"));
+		addItem(new Item(null, "Email Addresses", "bwgkogad.P_SelectEmalView"));
+		addItem(new Item(new MailBox(), "Mail Box Information", "hwwkboxs.P_ViewBoxs"));
+		addItem(new Item(new MealPlan(), "Meal Plan Balances", "hwwkcbrd.P_Display"));
+		addItem(new Item(null, "Emergency Contacts", "bwgkoemr.P_ViewEmrgContacts"));
 		
-		addItem(new Item("View Holds", "bwskoacc.P_ViewHold"));
-		addItem(new Item("Final Grades", "bwskogrd.P_ViewGrde"));
-		addItem(new Item("Unofficial Transcript", "bwskotrn.P_ViewTran"));
-		addItem(new Item("Degree Evaluation", "bwckcapp.P_DispCurrent"));
-		addItem(new Item("Calendar Schedule", "bwskfshd.P_CrseSchd?start_date_in=[DATE]"));
-		addItem(new Item("Detail Schedule", "bwskfshd.P_CrseSchdDetl"));
+		addItem(new Item(null, "View Holds", "bwskoacc.P_ViewHold"));
+		addItem(new Item(null, "Final Grades", "bwskogrd.P_ViewGrde"));
+		addItem(new Item(null, "Unofficial Transcript", "bwskotrn.P_ViewTran"));
+		addItem(new Item(null, "Degree Evaluation", "bwckcapp.P_DispCurrent"));
+		addItem(new Item(null, "Calendar Schedule", "bwskfshd.P_CrseSchd?start_date_in=[DATE]"));
+		addItem(new Item(null, "Detail Schedule", "bwskfshd.P_CrseSchdDetl"));
 	}
 
 	private static void addItem(Item item) {
@@ -47,11 +50,13 @@ public class Content implements Runnable{
 	
 	public static void loadResources(){
 		for(Item i : ITEMS){
-			WebReader.getInstance("", "").sendGetRequest("https://bannerweb.wpi.edu/pls/prod/"+i.id);
-			i.HTML = WebReader.getInstance("", "").HTML;
-		}
-		for(Item i : ITEMS){
-			i.HTML = Parser.parse(i.HTML);
+			if (i.parser != null){
+				i.parser.setHTML(WebReader.getInstance("", "").sendGetRequest("https://bannerweb.wpi.edu/pls/prod/"+i.id));
+				i.HTML = i.parser.getContent();
+			}
+			else {
+				i.HTML = "Feature Coming Soon!\nEmail tjmeyer@wpi.edu if you'd like\nto help implement it";
+			}
 		}
 	}
 
@@ -62,9 +67,11 @@ public class Content implements Runnable{
 		public String id;
 		public String title;
 		public String HTML = "Not availible at this time!";
+		public Page parser;
 
-		public Item(String content, String url) {
+		public Item(Page p, String content, String url) {
 			this.id = url;
+			this.parser = p;
 			this.title = content;
 		}
 

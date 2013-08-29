@@ -175,10 +175,13 @@ public class SplashActivity extends Activity {
 		 */
 		public void run() {
 			try {
+				// let the splash screen show for two seconds
 				Thread.sleep(2000);
 				
+				//check for account
 				boolean exists = profileExists();
 				
+				//if there is a user, attempt to log him in
 				if (exists){
 					FileInputStream fis1 = openFileInput("usr");
 					FileInputStream fis2 = openFileInput("pwd");
@@ -195,23 +198,27 @@ public class SplashActivity extends Activity {
 					String pwd = new String(pwd_b);
 					String usr = new String(usr_b);
 					
-					if (WebReader.getInstance(usr, pwd).initLogin()){
-						
+					if (WebReader.getInstance(usr, pwd).initLogin())
+					{ // the user has successfully logged in. quick, show them their things
 						new Thread(new Content()).start();
 						Intent intent = new Intent(SplashActivity.this, InfoListActivity.class);
 						SplashActivity.this.startActivity(intent);
 						SplashActivity.this.finish();
 					}
-					else{
+					else
+					{ // their log in fails. show them the log in box
 						exists = false;
 					}
 				}
-				if (!exists){
-					// Start logon activity
+				
+				
+				if (!exists)
+				{ //there is no user, so show the log in activity
 					Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
 					SplashActivity.this.startActivity(intent);
 					SplashActivity.this.finish();
 				}
+				
 			} catch (Exception e) {
 				Log.d("BB+", e.getMessage());
 			}
@@ -219,7 +226,12 @@ public class SplashActivity extends Activity {
 		}
 	}
 	
-	public boolean profileExists(){
+	
+	/**
+	 * 
+	 * @return whether or not the user has a saved profile on their device, with valid data
+	 */
+	private boolean profileExists(){
 		String[] names = fileList();
 		boolean usr = false;
 		boolean pwd = false;
@@ -227,7 +239,6 @@ public class SplashActivity extends Activity {
 			if (s.equals("usr"))usr=true;
 			if (s.equals("pwd"))pwd=true;
 		}
-		Log.d("BB+", "The system found username: "+usr+"\npassword: "+pwd);
 		return usr&&pwd;
 	}
 }

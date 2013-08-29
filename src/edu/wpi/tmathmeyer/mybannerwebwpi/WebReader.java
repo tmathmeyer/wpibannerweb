@@ -19,16 +19,18 @@ import edu.wpi.tmathmeyer.mybannerwebwpi.content.Content;
 
 import android.util.Log;
 
-public class WebReader implements Runnable{
-	private AbstractHttpClient client = new DefaultHttpClient();
-	private HttpResponse response = null;
-	public String HTML = "";
-	final String TAG = "BB+";
-	private String uname;
-	private String password;
+public class WebReader {
 	
-	static WebReader instance = null;
+	/**
+	 * Static Data and Methods
+	 */
 	
+	private static WebReader instance = null;
+	
+	/**
+	 *  get the singleton instance of the virtual web browser
+	 * 
+	 */
 	public static WebReader getInstance(String username, String password){
 		if (instance == null){
 			instance = new WebReader();
@@ -38,12 +40,31 @@ public class WebReader implements Runnable{
 		return instance;
 	}
 	
+	/**
+	 * force the singleton instance to commit sepuku
+	 */
 	public static void killInstance(){
 		instance = null;
 	}
 	
 	
-	public void sendGetRequest(String URL){
+	
+	
+	/**
+	 * Instance Data and Methods
+	 */
+	
+	private AbstractHttpClient client = new DefaultHttpClient();
+	private HttpResponse response = null;
+	private String HTML = "";
+	private final String TAG = "BB+";
+	private String uname;
+	private String password;
+	
+	/**
+	 * sends a get request to the given URL
+	 */
+	public String sendGetRequest(String URL){
 		HttpGet request = new HttpGet(URL);
 		Log.d(TAG,URL);
 		try {
@@ -51,13 +72,18 @@ public class WebReader implements Runnable{
 			HttpEntity entity = response.getEntity();
 			if(entity == null)
 				throw new Exception("bad entity");
-			HTML =  EntityUtils.toString(entity);
+			return EntityUtils.toString(entity);
 		}
 		catch(Exception e){
 			Log.d(TAG, e.toString());
+			return e.toString();
 		}
 	}
 	
+	/**
+	 * 
+	 * sends a post request to the server (and returns whether the user has logged in)
+	 */
 	public boolean sendPostRequest(String username, String password){
 		try {
 			HttpPost post = new HttpPost("https://bannerweb.wpi.edu/pls/prod/twbkwbis.P_ValLogin");
@@ -71,7 +97,7 @@ public class WebReader implements Runnable{
 				throw new Exception("bad entity");
 			HTML =  EntityUtils.toString(entity);
 			if (HTML.contains("http-equiv=\"refresh\"")){
-				this.sendGetRequest("https://bannerweb.wpi.edu/pls/prod/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu");
+				//this.sendGetRequest("https://bannerweb.wpi.edu/pls/prod/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu");
 				return true;
 			}
 		}
@@ -81,8 +107,12 @@ public class WebReader implements Runnable{
 		return false;
 	}
 	
+	/**
+	 * 
+	 * attempt to log in by sending a post request with the acct info
+	 */
 	public boolean initLogin(){
-		this.sendGetRequest("https://bannerweb.wpi.edu/pls/prod/twbkwbis.P_ValLogin");
+		this.HTML = this.sendGetRequest("https://bannerweb.wpi.edu/pls/prod/twbkwbis.P_ValLogin");
 		if (this.sendPostRequest(this.uname, this.password)){
 			new Content();
 			return true;
@@ -90,10 +120,7 @@ public class WebReader implements Runnable{
 		return false;
 	}
 
-
-	@Override
-	public void run() {
-		//this.sendGetRequest("https://bannerweb.wpi.edu/pls/prod/twbkwbis.P_ValLogin");
-		//this.sendPostRequest(this.uname, this.password);
+	public String getHTML() {
+		return this.HTML;
 	}
 }
