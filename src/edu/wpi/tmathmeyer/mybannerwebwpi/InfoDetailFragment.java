@@ -55,7 +55,7 @@ public class InfoDetailFragment extends Fragment {
 				container, false);
 
 		if (mItem != null) {
-			WebReader.getInstance("", "").sendGetRequest("https://bannerweb.wpi.edu/pls/prod/"+mItem.id);
+			WebReader.getInstance("", "").sendGetRequest("https://bannerweb.wpi.edu/pls/prod/"+mItem.url);
 			((TextView) rootView.findViewById(R.id.info_detail)).setTypeface(Typeface.MONOSPACE); 
 			((TextView) rootView.findViewById(R.id.info_detail))
 					.setText(mItem.HTML);
