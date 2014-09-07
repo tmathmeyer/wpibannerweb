@@ -1,6 +1,5 @@
 package edu.wpi.tmathmeyer.mybannerwebwpi.page;
 
-import android.text.Html;
 import android.util.Log;
 
 public class MailBox implements Page{
