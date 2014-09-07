@@ -45,13 +45,13 @@ public class Content implements Runnable{
 
 	private static void addItem(Item item) {
 		ITEMS.add(item);
-		ITEM_MAP.put(item.id, item);
+		ITEM_MAP.put(item.url, item);
 	}
 	
 	public static void loadResources(){
 		for(Item i : ITEMS){
 			if (i.parser != null){
-				i.parser.setHTML(WebReader.getInstance("", "").sendGetRequest("https://bannerweb.wpi.edu/pls/prod/"+i.id));
+				i.parser.setHTML(WebReader.getInstance("", "").sendGetRequest("https://bannerweb.wpi.edu/pls/prod/"+i.url));
 				i.HTML = i.parser.getContent();
 			}
 			else {
@@ -64,13 +64,13 @@ public class Content implements Runnable{
 	 * A dummy item representing a piece of content.
 	 */
 	public static class Item {
-		public String id;
+		public String url;
 		public String title;
 		public String HTML = "Not availible at this time!";
 		public Page parser;
 
 		public Item(Page p, String content, String url) {
-			this.id = url;
+			this.url = url;
 			this.parser = p;
 			this.title = content;
 		}
