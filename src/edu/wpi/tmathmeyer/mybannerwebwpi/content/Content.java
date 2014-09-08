@@ -34,8 +34,8 @@ public class Content implements Runnable {
 	static {
 		addPage(new MailBox("Mail Box Information", "hwwkboxs.P_ViewBoxs"));
 		addPage(new MealPlan("Meal Plan Balances", "hwwkcbrd.P_Display"));
-		addPage(new CalendarSchedule( "Calendar Schedule", "bwskfshd.P_CrseSchd?start_date_in=[DATE]"));
-		addPage(new DetailSchedule( "Detail Schedule", "bwskfshd.P_CrseSchdDetl"));
+		addPage(new CalendarSchedule("Calendar Schedule", "bwskfshd.P_CrseSchd?start_date_in=[DATE]"));
+		addPage(new DetailSchedule("Detail Schedule", "bwskfshd.P_CrseSchdDetl"));
 		addPage(new AdvisorInfo("Acedemic Advisor Information", "hwwksadv.P_Summary"));
 	}
 
@@ -52,12 +52,7 @@ public class Content implements Runnable {
 	}
 
 	public static void loadResource(Page p) {
-		if (p != null) {
-			p.setHTML(WebReader.getInstance("", "").sendGetRequest("https://bannerweb.wpi.edu/pls/prod/" + p.url));
-			p.content = p.getContent();
-		} else {
-			p.content = "Feature Coming Soon!\nEmail tjmeyer@wpi.edu if you'd like\nto help implement it";
-		}
+		p.html = WebReader.getInstance("", "").sendGetRequest("https://bannerweb.wpi.edu/pls/prod/" + p.url);
 	}
 
 	@Override
