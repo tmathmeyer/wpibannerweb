@@ -16,7 +16,7 @@ import edu.wpi.tmathmeyer.mybannerwebwpi.content.Content;
  * contained in a {@link InfoListActivity} in two-pane mode (on tablets) or a
  * {@link InfoDetailActivity} on handsets.
  */
-public class InfoDetailFragment extends Fragment {
+public class MealplanFragment extends Fragment {
 	/**
 	 * The fragment argument representing the item ID that this fragment
 	 * represents.
@@ -32,7 +32,7 @@ public class InfoDetailFragment extends Fragment {
 	 * Mandatory empty constructor for the fragment manager to instantiate the
 	 * fragment (e.g. upon screen orientation changes).
 	 */
-	public InfoDetailFragment() {
+	public MealplanFragment() {
 	}
 
 	@Override
@@ -51,14 +51,14 @@ public class InfoDetailFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_info_detail,
+		View rootView = inflater.inflate(R.layout.meal_plan,
 				container, false);
 
 		if (mItem != null) {
 			WebReader.getInstance("", "").sendGetRequest("https://bannerweb.wpi.edu/pls/prod/"+mItem.url);
-			((TextView) rootView.findViewById(R.id.info_detail)).setTypeface(Typeface.MONOSPACE); 
-			((TextView) rootView.findViewById(R.id.info_detail))
-					.setText(mItem.HTML);
+//			((TextView) rootView.findViewById(R.id.info_detail)).setTypeface(Typeface.MONOSPACE); 
+//			((TextView) rootView.findViewById(R.id.info_detail))
+//					.setText(mItem.HTML);
 		}
 
 		return rootView;

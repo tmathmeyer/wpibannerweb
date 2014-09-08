@@ -225,7 +225,6 @@ public class LoginActivity extends Activity {
 					Log.d("BB+", e.toString());
 				}
 				
-				
 				new Thread(new Content()).start();
 				Intent intent = new Intent(LoginActivity.this, InfoListActivity.class);
 				LoginActivity.this.startActivity(intent);

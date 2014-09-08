@@ -82,7 +82,7 @@ public class WebReader {
 	 * 
 	 * sends a post request to the server (and returns whether the user has logged in)
 	 */
-	public boolean sendPostRequest(String username, String password){
+	public boolean sendLoginRequest(String username, String password){
 		try {
 			HttpPost post = new HttpPost("https://bannerweb.wpi.edu/pls/prod/twbkwbis.P_ValLogin");
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -111,8 +111,10 @@ public class WebReader {
 	 */
 	public boolean initLogin(){
 		this.HTML = this.sendGetRequest("https://bannerweb.wpi.edu/pls/prod/twbkwbis.P_ValLogin");
-		if (this.sendPostRequest(this.uname, this.password)){
+		//try loggin in
+		if (this.sendLoginRequest(this.uname, this.password)){
 			new Content();
+			Log.e("new content","new content");
 			return true;
 		}
 		return false;
