@@ -3,4 +3,6 @@ wpibannerweb
 
 a bannerweb android app
 
-peter's push
+Peter's push
+
+Cuong's push
