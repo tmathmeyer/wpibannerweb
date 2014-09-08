@@ -230,6 +230,8 @@ public class LoginActivity extends Activity {
 				LoginActivity.this.startActivity(intent);
 				LoginActivity.this.finish();
 			} else {
+				//this can happen if password is wrong OR if there's no internet
+				//we should differentiate between those two at some point...
 				WebReader.killInstance();
 				mPasswordView
 						.setError(getString(R.string.error_incorrect_password));

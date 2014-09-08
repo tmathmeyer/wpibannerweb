@@ -12,7 +12,7 @@ import android.view.MenuItem;
  * side-by-side with a list of items in a {@link InfoListActivity}.
  * <p>
  * This activity is mostly just a 'shell' activity containing nothing more than
- * a {@link Mailbox}.
+ * a {@link InfoDetailFragment}.
  */
 public class InfoDetailActivity extends FragmentActivity {
 
@@ -37,9 +37,9 @@ public class InfoDetailActivity extends FragmentActivity {
 			// Create the detail fragment and add it to the activity
 			// using a fragment transaction.
 			Bundle arguments = new Bundle();
-			arguments.putString(Mailbox.ARG_ITEM_ID, getIntent()
-					.getStringExtra(Mailbox.ARG_ITEM_ID));
-			Mailbox fragment = new Mailbox();
+			arguments.putString(InfoDetailFragment.ARG_ITEM_ID, getIntent()
+					.getStringExtra(InfoDetailFragment.ARG_ITEM_ID));
+			InfoDetailFragment fragment = new InfoDetailFragment();
 			fragment.setArguments(arguments);
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.info_detail_container, fragment).commit();

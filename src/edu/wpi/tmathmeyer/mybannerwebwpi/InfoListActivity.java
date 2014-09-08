@@ -14,7 +14,7 @@ import android.support.v4.app.FragmentActivity;
  * <p>
  * The activity makes heavy use of fragments. The list of items is a
  * {@link InfoListFragment} and the item details (if present) is a
- * {@link Mailbox}.
+ * {@link InfoDetailFragment}.
  * <p>
  * This activity also implements the required {@link InfoListFragment.Callbacks}
  * interface to listen for item selections.
@@ -60,8 +60,8 @@ public class InfoListActivity extends FragmentActivity implements
 			// adding or replacing the detail fragment using a
 			// fragment transaction.
 			Bundle arguments = new Bundle();
-			arguments.putString(Mailbox.ARG_ITEM_ID, id);
-			Mailbox fragment = new Mailbox();
+			arguments.putString(InfoDetailFragment.ARG_ITEM_ID, id);
+			InfoDetailFragment fragment = new InfoDetailFragment();
 			fragment.setArguments(arguments);
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.info_detail_container, fragment).commit();
@@ -70,7 +70,7 @@ public class InfoListActivity extends FragmentActivity implements
 			// In single-pane mode, simply start the detail activity
 			// for the selected item ID.
 			Intent detailIntent = new Intent(this, InfoDetailActivity.class);
-			detailIntent.putExtra(Mailbox.ARG_ITEM_ID, id);
+			detailIntent.putExtra(InfoDetailFragment.ARG_ITEM_ID, id);
 			startActivity(detailIntent);
 		}
 	}

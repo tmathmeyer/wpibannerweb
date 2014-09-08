@@ -2,15 +2,16 @@ package edu.wpi.tmathmeyer.mybannerwebwpi.page;
 
 import android.util.Log;
 
-public class MailBox extends Page{
+public class CalendarSchedule extends Page{
+
+	public CalendarSchedule(String title, String url) {
+		super(title, url);
+	}
 
 	private String content = null;
 	private String html;
 	
-	public MailBox(String title, String url) {
-		super(title, url);
-	}
-	
+
 	@Override
 	public String getContent() {
 		if (this.content == null)

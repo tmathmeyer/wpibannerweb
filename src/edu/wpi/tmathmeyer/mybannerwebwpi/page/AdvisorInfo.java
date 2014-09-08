@@ -8,11 +8,15 @@ import org.jsoup.select.Elements;
 
 import android.util.Log;
 
-public class AdvisorInfo implements Page {
+public class AdvisorInfo extends Page {
+
+	public AdvisorInfo(String content, String url) {
+		super(content, url);
+	}
 
 	private String content = null;
 	private String html;
-
+	
 	@Override
 	public String getContent() {
 		if (this.content == null)

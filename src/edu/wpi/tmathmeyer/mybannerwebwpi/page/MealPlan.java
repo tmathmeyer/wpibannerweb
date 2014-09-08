@@ -3,7 +3,11 @@ package edu.wpi.tmathmeyer.mybannerwebwpi.page;
 import android.text.Html;
 import android.util.Log;
 
-public class MealPlan implements Page{
+public class MealPlan extends Page{
+
+	public MealPlan(String title, String url) {
+		super(title, url);
+	}
 
 	private String content = null;
 	private String html;
