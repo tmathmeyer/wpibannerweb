@@ -1,14 +1,15 @@
 package edu.wpi.tmathmeyer.mybannerwebwpi.page;
 
-
-public class CalendarSchedule extends Page{
+public class CalendarSchedule extends Page {
 
 	public CalendarSchedule(String title, String url, int layoutId) {
 		super(title, url, layoutId);
 	}
-	
-	
-	private void parse() {
-		//prase this.html for the calendar schedule data
+
+	@Override
+	public void fillContent(String html) {
+		// TODO Auto-generated method stub
+
 	}
+
 }

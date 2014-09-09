@@ -8,8 +8,10 @@ public class DetailSchedule extends Page{
 		super(title, url, layoutId);
 	}
 
-	private void parse() {
-		//parse this.html for detail schedule data
+	@Override
+	public void fillContent(String html) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

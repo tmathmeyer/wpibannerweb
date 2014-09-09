@@ -9,7 +9,7 @@ public class MealPlan extends Page {
 		super(title, url, layoutId);
 	}
 
-	private void parse() {
+	public void fillContent(String html) {
 		try {
 			html = html.substring(html.indexOf("datadisplaytable") + 20);
 			html = html.substring(0, html.indexOf("</TABLE"));

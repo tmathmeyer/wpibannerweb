@@ -14,7 +14,7 @@ public class AdvisorInfo extends Page {
 		super(content, url, layoutId);
 	}
 
-	private void parse() {
+	public void fillContent(String html) {
 		Document doc = Jsoup.parse(html, "https://bannerweb.wpi.edu/pls/prod/");
 		Element body = doc.body();
 		Element pagebodydiv = body.getElementsByClass("pagebodydiv").first();
