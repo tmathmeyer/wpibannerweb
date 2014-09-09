@@ -8,24 +8,13 @@ import org.jsoup.select.Elements;
 
 import android.util.Log;
 
-public class AdvisorInfo implements Page {
+public class AdvisorInfo extends Page {
 
-	private String content = null;
-	private String html;
-
-	@Override
-	public String getContent() {
-		if (this.content == null)
-			this.parse();
-		return this.content;
+	public AdvisorInfo(String content, String url, int layoutId) {
+		super(content, url, layoutId);
 	}
 
-	@Override
-	public void setHTML(String html) {
-		this.html = html;
-	}
-
-	private void parse() {
+	public void fillContent(String html) {
 		Document doc = Jsoup.parse(html, "https://bannerweb.wpi.edu/pls/prod/");
 		Element body = doc.body();
 		Element pagebodydiv = body.getElementsByClass("pagebodydiv").first();
