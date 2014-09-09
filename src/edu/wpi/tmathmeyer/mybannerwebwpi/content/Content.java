@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import edu.wpi.tmathmeyer.mybannerwebwpi.R;
 import edu.wpi.tmathmeyer.mybannerwebwpi.WebReader;
 import edu.wpi.tmathmeyer.mybannerwebwpi.page.*;
 
@@ -32,11 +33,11 @@ public class Content implements Runnable {
 	 */
 
 	static {
-		addPage(new MailBox("Mail Box Information", "hwwkboxs.P_ViewBoxs"));
-		addPage(new MealPlan("Meal Plan Balances", "hwwkcbrd.P_Display"));
-		addPage(new CalendarSchedule("Calendar Schedule", "bwskfshd.P_CrseSchd?start_date_in=[DATE]"));
-		addPage(new DetailSchedule("Detail Schedule", "bwskfshd.P_CrseSchdDetl"));
-		addPage(new AdvisorInfo("Acedemic Advisor Information", "hwwksadv.P_Summary"));
+		addPage(new MailBox("Mail Box Information", "hwwkboxs.P_ViewBoxs",R.layout.mailbox));
+		addPage(new MealPlan("Meal Plan Balances", "hwwkcbrd.P_Display",R.layout.meal_plan));
+		addPage(new CalendarSchedule("Calendar Schedule", "bwskfshd.P_CrseSchd?start_date_in=[DATE]",R.layout.calendar_schedule));
+		addPage(new DetailSchedule("Detail Schedule", "bwskfshd.P_CrseSchdDetl",R.layout.detail_schedule));
+		addPage(new AdvisorInfo("Acedemic Advisor Information", "hwwksadv.P_Summary",R.layout.advisor_info));
 	}
 
 	private static void addPage(Page page) {

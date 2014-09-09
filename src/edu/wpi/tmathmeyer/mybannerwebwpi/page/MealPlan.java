@@ -5,8 +5,8 @@ import android.util.Log;
 
 public class MealPlan extends Page {
 
-	public MealPlan(String title, String url) {
-		super(title, url);
+	public MealPlan(String title, String url, int layoutId) {
+		super(title, url, layoutId);
 	}
 
 	private void parse() {

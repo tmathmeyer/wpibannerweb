@@ -3,8 +3,8 @@ package edu.wpi.tmathmeyer.mybannerwebwpi.page;
 
 public class CalendarSchedule extends Page{
 
-	public CalendarSchedule(String title, String url) {
-		super(title, url);
+	public CalendarSchedule(String title, String url, int layoutId) {
+		super(title, url, layoutId);
 	}
 	
 	

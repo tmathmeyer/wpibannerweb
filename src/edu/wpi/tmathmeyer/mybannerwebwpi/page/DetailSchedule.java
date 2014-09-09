@@ -4,8 +4,8 @@ import android.util.Log;
 
 public class DetailSchedule extends Page{
 
-	public DetailSchedule(String title, String url) {
-		super(title, url);
+	public DetailSchedule(String title, String url, int layoutId) {
+		super(title, url, layoutId);
 	}
 
 	private void parse() {

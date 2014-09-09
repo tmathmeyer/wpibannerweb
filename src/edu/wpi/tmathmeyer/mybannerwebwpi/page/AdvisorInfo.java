@@ -10,8 +10,8 @@ import android.util.Log;
 
 public class AdvisorInfo extends Page {
 
-	public AdvisorInfo(String content, String url) {
-		super(content, url);
+	public AdvisorInfo(String content, String url, int layoutId) {
+		super(content, url, layoutId);
 	}
 
 	private void parse() {

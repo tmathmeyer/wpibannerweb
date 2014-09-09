@@ -47,9 +47,7 @@ public class InfoDetailFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		//get the id of the layout this page fragment should have
-		int layoutId = (Integer) this.getArguments().get("layout_id");
-		XmlResourceParser fragmentLayout = this.getResources().getLayout(layoutId);
+		XmlResourceParser fragmentLayout = this.getResources().getLayout(mPage.layoutId);
 		View rootView = inflater.inflate(fragmentLayout, container, false);
 		return rootView;
 	}

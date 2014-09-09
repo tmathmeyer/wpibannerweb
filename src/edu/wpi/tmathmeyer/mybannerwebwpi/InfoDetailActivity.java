@@ -39,6 +39,7 @@ public class InfoDetailActivity extends FragmentActivity {
 			Bundle arguments = new Bundle();
 			arguments.putString(InfoDetailFragment.ARG_ITEM_ID, getIntent()
 					.getStringExtra(InfoDetailFragment.ARG_ITEM_ID));
+			
 			InfoDetailFragment fragment = new InfoDetailFragment();
 			fragment.setArguments(arguments);
 			getSupportFragmentManager().beginTransaction()

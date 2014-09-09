@@ -4,23 +4,8 @@ import android.util.Log;
 
 public class MailBox extends Page{
 
-	private String content = null;
-	private String html;
-	
-	public MailBox(String title, String url) {
-		super(title, url);
-	}
-	
-	@Override
-	public String getContent() {
-		if (this.content == null)
-			this.parse();
-		return this.content;
-	}
-
-	@Override
-	public void setHTML(String html) {
-		this.html = html;
+	public MailBox(String title, String url, int layoutId) {
+		super(title, url, layoutId);
 	}
 	
 	private void parse() {
@@ -44,7 +29,7 @@ public class MailBox extends Page{
 					combo = info[1]+" : "+info[2]+" : "+info[3];
 				}
 			}
-			this.content = "Mail Box Number:\n   "+boxnum+"\n\n\nCombination:\n   "+combo;
+			//this.content = "Mail Box Number:\n   "+boxnum+"\n\n\nCombination:\n   "+combo;
 		}
 		catch(Exception e){
 			for(StackTraceElement k : e.getStackTrace()){
