@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
 import edu.wpi.tmathmeyer.mybannerwebwpi.R;
 import edu.wpi.tmathmeyer.mybannerwebwpi.WebReader;
 import edu.wpi.tmathmeyer.mybannerwebwpi.page.AdvisorInfo;
