@@ -61,47 +61,48 @@ public class SplashActivity extends Activity {
 
 		// Set up an instance of SystemUiHider to control the system UI for
 		// this activity.
-		mSystemUiHider = SystemUiHider.getInstance(this, contentView, HIDER_FLAGS);
+		mSystemUiHider = SystemUiHider.getInstance(this, contentView,
+				HIDER_FLAGS);
 		mSystemUiHider.setup();
 		mSystemUiHider
-		.setOnVisibilityChangeListener(new SystemUiHider.OnVisibilityChangeListener() {
-			// Cached values.
-			int mControlsHeight;
-			int mShortAnimTime;
+				.setOnVisibilityChangeListener(new SystemUiHider.OnVisibilityChangeListener() {
+					// Cached values.
+					int mControlsHeight;
+					int mShortAnimTime;
 
-			@Override
-			@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-			public void onVisibilityChange(boolean visible) {
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-					// If the ViewPropertyAnimator API is available
-					// (Honeycomb MR2 and later), use it to animate the
-					// in-layout UI controls at the bottom of the
-					// screen.
-					if (mControlsHeight == 0) {
-						mControlsHeight = controlsView.getHeight();
-					}
-					if (mShortAnimTime == 0) {
-						mShortAnimTime = getResources().getInteger(
-								android.R.integer.config_shortAnimTime);
-					}
-					controlsView
-					.animate()
-					.translationY(visible ? 0 : mControlsHeight)
-					.setDuration(mShortAnimTime);
-				} else {
-					// If the ViewPropertyAnimator APIs aren't
-					// available, simply show or hide the in-layout UI
-					// controls.
-					controlsView.setVisibility(visible ? View.VISIBLE
-							: View.GONE);
-				}
+					@Override
+					@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+					public void onVisibilityChange(boolean visible) {
+						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+							// If the ViewPropertyAnimator API is available
+							// (Honeycomb MR2 and later), use it to animate the
+							// in-layout UI controls at the bottom of the
+							// screen.
+							if (mControlsHeight == 0) {
+								mControlsHeight = controlsView.getHeight();
+							}
+							if (mShortAnimTime == 0) {
+								mShortAnimTime = getResources().getInteger(
+										android.R.integer.config_shortAnimTime);
+							}
+							controlsView
+									.animate()
+									.translationY(visible ? 0 : mControlsHeight)
+									.setDuration(mShortAnimTime);
+						} else {
+							// If the ViewPropertyAnimator APIs aren't
+							// available, simply show or hide the in-layout UI
+							// controls.
+							controlsView.setVisibility(visible ? View.VISIBLE
+									: View.GONE);
+						}
 
-				if (visible && AUTO_HIDE) {
-					// Schedule a hide().
-					delayedHide(AUTO_HIDE_DELAY_MILLIS);
-				}
-			}
-		});
+						if (visible && AUTO_HIDE) {
+							// Schedule a hide().
+							delayedHide(AUTO_HIDE_DELAY_MILLIS);
+						}
+					}
+				});
 
 		// Set up the user interaction to manually show or hide the system UI.
 		contentView.setOnClickListener(new View.OnClickListener() {
@@ -118,8 +119,8 @@ public class SplashActivity extends Activity {
 		// Upon interacting with UI controls, delay any scheduled hide()
 		// operations to prevent the jarring behavior of controls going away
 		// while interacting with the UI.
-		//findViewById(R.id.dummy_button).setOnTouchListener(
-		//	mDelayHideTouchListener);
+		// findViewById(R.id.dummy_button).setOnTouchListener(
+		// mDelayHideTouchListener);
 
 		IntentLauncher launcher = new IntentLauncher();
 		launcher.start();
@@ -167,7 +168,6 @@ public class SplashActivity extends Activity {
 		mHideHandler.postDelayed(mHideRunnable, delayMillis);
 	}
 
-
 	private class IntentLauncher extends Thread {
 		@Override
 		/**
@@ -177,68 +177,68 @@ public class SplashActivity extends Activity {
 			try {
 				// let the splash screen show for two seconds
 				Thread.sleep(2000);
-				
-				//check for account
+
+				// check for account
 				boolean exists = profileExists();
-				
-				//if there is a user, attempt to log him in
-				if (exists){
+
+				// if there is a user, attempt to log him in
+				if (exists) {
 					FileInputStream fis1 = openFileInput("usr");
 					FileInputStream fis2 = openFileInput("pwd");
-					
+
 					int usr_len = fis1.read();
 					int pwd_len = fis2.read();
-					
+
 					byte[] pwd_b = new byte[pwd_len];
 					byte[] usr_b = new byte[usr_len];
-					
+
 					fis1.read(usr_b);
 					fis2.read(pwd_b);
-					
+
 					String pwd = new String(pwd_b);
 					String usr = new String(usr_b);
-					
-					if (WebReader.getInstance(usr, pwd).initLogin())
-					{ // the user has successfully logged in. quick, show them their things
+
+					if (WebReader.getInstance(usr, pwd).initLogin()) { 
+						// the user has successfully logged in. Quick, show them their things
 						new Thread(new Content()).start();
-						Intent intent = new Intent(SplashActivity.this, InfoListActivity.class);
+						Intent intent = new Intent(SplashActivity.this,
+								InfoListActivity.class);
 						SplashActivity.this.startActivity(intent);
 						SplashActivity.this.finish();
-					}
-					else
-					{ // their log in fails. show them the log in box
+					} else { // their log in fails. show them the log in box
 						exists = false;
 					}
 				}
-				
-				
-				if (!exists)
-				{ //there is no user, so show the log in activity
-					Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+
+				if (!exists) { // there is no user, so show the log in activity
+					Intent intent = new Intent(SplashActivity.this,
+							LoginActivity.class);
 					SplashActivity.this.startActivity(intent);
 					SplashActivity.this.finish();
 				}
-				
+
 			} catch (Exception e) {
 				Log.d("BB+", e.getMessage());
 			}
-			
+
 		}
 	}
-	
-	
+
 	/**
 	 * 
-	 * @return whether or not the user has a saved profile on their device, with valid data
+	 * @return whether or not the user has a saved profile on their device, with
+	 *         valid data
 	 */
-	private boolean profileExists(){
+	private boolean profileExists() {
 		String[] names = fileList();
 		boolean usr = false;
 		boolean pwd = false;
-		for(String s : names){
-			if (s.equals("usr"))usr=true;
-			if (s.equals("pwd"))pwd=true;
+		for (String s : names) {
+			if (s.equals("usr"))
+				usr = true;
+			if (s.equals("pwd"))
+				pwd = true;
 		}
-		return usr&&pwd;
+		return usr && pwd;
 	}
 }
