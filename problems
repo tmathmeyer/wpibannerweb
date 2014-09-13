@@ -1,0 +1,7 @@
+you have to login twice
+
+we need specific layouts for each info
+
+it doesn't differentiate between wrong password and no internet
+
+the code for loading Content is repeated in both SplashActivity and LoginActivity 
