@@ -43,11 +43,12 @@ public class InfoDetailFragment extends Fragment {
 			mPage = Content.item_map.get(getArguments().getString(ARG_ITEM_ID));
 		}
 	}
-
+/*
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		XmlResourceParser fragmentLayout = this.getResources().getLayout(mPage.layoutId);
 		View rootView = inflater.inflate(fragmentLayout, container, false);
 		return rootView;
 	}
+*/
 }

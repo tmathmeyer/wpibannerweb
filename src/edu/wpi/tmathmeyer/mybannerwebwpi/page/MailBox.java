@@ -4,11 +4,14 @@ import android.util.Log;
 
 public class MailBox extends Page {
 
-	public MailBox(String title, String url, int layoutId) {
-		super(title, url, layoutId);
+	@Override
+	public void loadContent(String html) {
+			
 	}
 
-	public void fillContent(String html) {
-
+	@Override
+	public void fillContent() {
+		// TODO Auto-generated method stub
+		
 	}
 }

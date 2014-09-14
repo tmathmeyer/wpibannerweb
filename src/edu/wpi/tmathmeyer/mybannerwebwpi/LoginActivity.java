@@ -221,8 +221,10 @@ public class LoginActivity extends Activity {
 				} catch (Exception e) {
 					Log.d("BB+", e.toString());
 				}
-
+				Log.d("ndtc", "before new thread of content");
 				new Thread(new Content()).start();
+				Log.d("ndtc", "after new thread of content");
+				
 				Intent intent = new Intent(LoginActivity.this,
 						InfoListActivity.class);
 				LoginActivity.this.startActivity(intent);

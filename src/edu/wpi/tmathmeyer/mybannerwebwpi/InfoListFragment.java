@@ -116,7 +116,7 @@ public class InfoListFragment extends ListFragment {
 
 		// Notify the active callbacks interface (the activity, if the
 		// fragment is attached to one) that an item has been selected.
-		mCallbacks.onItemSelected(Content.items.get(position).url);
+		mCallbacks.onItemSelected(Content.items.get(position).getUrl());
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package edu.wpi.tmathmeyer.mybannerwebwpi;
 
+import edu.wpi.tmathmeyer.mybannerwebwpi.content.Content;
+import edu.wpi.tmathmeyer.mybannerwebwpi.page.Page;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -54,17 +56,14 @@ public class InfoListActivity extends FragmentActivity implements
 	 * the item with the given ID was selected.
 	 */
 	@Override
-	public void onItemSelected(String id) {
+	public void onItemSelected(String id) {	
 		if (mTwoPane) {
 			// In two-pane mode, show the detail view in this activity by
 			// adding or replacing the detail fragment using a
 			// fragment transaction.
-			Bundle arguments = new Bundle();
-			arguments.putString(InfoDetailFragment.ARG_ITEM_ID, id);
-			InfoDetailFragment fragment = new InfoDetailFragment();
-			fragment.setArguments(arguments);
+			Page mPage = Content.item_map.get(id);
 			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.info_detail_container, fragment).commit();
+					.replace(R.id.info_detail_container, mPage).commit();
 
 		} else {
 			// In single-pane mode, simply start the detail activity

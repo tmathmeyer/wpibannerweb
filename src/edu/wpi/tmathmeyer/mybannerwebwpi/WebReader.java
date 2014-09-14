@@ -15,8 +15,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
-import edu.wpi.tmathmeyer.mybannerwebwpi.content.Content;
-
 import android.util.Log;
 
 public class WebReader {

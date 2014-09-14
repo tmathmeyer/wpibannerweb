@@ -1,15 +1,32 @@
 package edu.wpi.tmathmeyer.mybannerwebwpi.page;
 
+import edu.wpi.tmathmeyer.mybannerwebwpi.R;
+import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 public class MealPlan extends Page {
 
-	public MealPlan(String title, String url, int layoutId) {
-		super(title, url, layoutId);
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 	}
 
-	public void fillContent(String html) {
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		return inflater.inflate(R.layout.meal_plan, container, false);
+	}
+	
+	@Override 
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+			
+	}
+	
+	public void loadContent(String html) {
 		try {
 			html = html.substring(html.indexOf("datadisplaytable") + 20);
 			html = html.substring(0, html.indexOf("</TABLE"));
@@ -26,6 +43,10 @@ public class MealPlan extends Page {
 				Log.d("BB+", "String Error!: " + k.toString());
 			}
 		}
+	}
+	
+	public void fillContent() {
+		
 	}
 
 	private static String mult(int i, String s) {
