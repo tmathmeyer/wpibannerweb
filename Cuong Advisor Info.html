@@ -1,0 +1,455 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML lang="en">
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<META HTTP-EQUIV="Pragma" NAME="Cache-Control" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" NAME="Cache-Control" CONTENT="no-cache">
+<LINK REL="stylesheet" HREF="/css/web_defaultapp.css" TYPE="text/css">
+<LINK REL="stylesheet" HREF="/css/web_defaultprint.css" TYPE="text/css" media="print">
+<TITLE>Advising Information Summary</TITLE>
+<META HTTP-EQUIV="Content-Script-Type" NAME="Default_Script_Language" CONTENT="text/javascript">
+<SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript">
+<!-- Hide JavaScript from older browsers 
+var submitcount=0;
+function checkSubmit() {
+if (submitcount == 0)
+   {
+   submitcount++;
+   return true;
+   }
+else
+   {
+alert("Your changes have already been submitted.");
+   return false;
+   }
+}
+//  End script hiding -->
+</SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript">
+<!-- Hide JavaScript from older browsers 
+//  Function to open a window
+function windowOpen(window_url) {
+   helpWin = window.open(window_url,'','toolbar=yes,status=no,scrollbars=yes,menubar=yes,resizable=yes,directories=no,location=no,width=350,height=400');
+   if (document.images) { 
+       if (helpWin) helpWin.focus()
+   }
+}
+//  End script hiding -->
+</SCRIPT>
+</HEAD>
+<BODY>
+<DIV class="headerwrapperdiv">
+<DIV class="pageheaderdiv1">
+<A HREF="#main_content" onMouseover="window.status='Go to Main Content'; return true" onMouseout="window.status=''; return true" OnFocus="window.status='Go to Main Content'; return true" onBlur="window.status=''; return true" class="skiplinks">Go to Main Content</A>
+<H1> </H1></DIV><DIV class="headerlinksdiv">
+<SPAN class="pageheaderlinks2">
+<MAP NAME="Module_Navigation_Links_H" title="Module Navigation Links">
+<p>
+<A HREF="#skip_Module_Navigation_Links_H" onMouseover="window.status='Skip Module Navigation Links'; return true" onMouseout="window.status=''; return true" onFocus="window.status='Skip Module Navigation Links'; return true" onBlur="window.status=''; return true"  class="skiplinks">Skip Module Navigation Links</A>
+<TABLE  CLASS="plaintable" SUMMARY="This is main table for displaying Tab Items."
+                          WIDTH="100%" cellSpacing=0 cellPadding=0 border=0>
+<TR>
+<TD CLASS="pldefault">
+<TABLE  CLASS="plaintable" SUMMARY="This table displays Tab Items."
+                 cellSpacing=0 cellPadding=0 border=0>
+<TR>
+<td class="taboff" height=22>
+<A HREF="/pls/prod/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu" onMouseover="window.status='Main Menu'; return true" onMouseout="window.status=''; return true" onFocus="window.status='Main Menu'; return true" onBlur="window.status=''; return true" ><b>Main Menu</b></A>
+</TD>
+<TD class="bgtaboff" height=22 vAlign="top" align="right">
+<IMG SRC="/wtlgifs/web_tab_corner_right.gif" ALT="Tab Corner Right" CLASS="headerImg" TITLE="Tab Corner Right"  NAME="web_tab_corner_right" HSPACE=0 VSPACE=0 BORDER=0 HEIGHT=20 WIDTH=8>
+</TD>
+<td class="tabon"  height=22>
+<A HREF="/pls/prod/twbkwbis.P_GenMenu?name=bmenu.P_StuMainMnu" onMouseover="window.status='Student Services &amp; Financial Aid'; return true" onMouseout="window.status=''; return true" onFocus="window.status='Student Services &amp; Financial Aid'; return true" onBlur="window.status=''; return true" ><b>Student Services &amp; Financial Aid</b></A>
+</TD>
+<TD class="bgtabon"  height=22 vAlign="top" align="right">
+<IMG SRC="/wtlgifs/web_tab_corner_right.gif" ALT="Tab Corner Right" CLASS="headerImg" TITLE="Tab Corner Right"  NAME="web_tab_corner_right" HSPACE=0 VSPACE=0 BORDER=0 HEIGHT=20 WIDTH=8>
+</TD>
+<td class="taboff" height=22>
+<A HREF="/pls/prod/twbkwbis.P_GenMenu?name=bmenu.P_GenMnu" onMouseover="window.status='New Personal Information'; return true" onMouseout="window.status=''; return true" onFocus="window.status='New Personal Information'; return true" onBlur="window.status=''; return true" ><b>Personal Info</b></A>
+</TD>
+<TD class="bgtaboff" height=22 vAlign="top" align="right">
+<IMG SRC="/wtlgifs/web_tab_corner_right.gif" ALT="Tab Corner Right" CLASS="headerImg" TITLE="Tab Corner Right"  NAME="web_tab_corner_right" HSPACE=0 VSPACE=0 BORDER=0 HEIGHT=20 WIDTH=8>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD class="bgtabon" width="100%" colSpan=2><IMG SRC="/wtlgifs/web_transparent.gif" ALT="Transparent Image" CLASS="headerImg" TITLE="Transparent Image"  NAME="web_transparent" HSPACE=0 VSPACE=0 BORDER=0 HEIGHT=3 WIDTH=10></TD></TR></TABLE>
+</MAP>
+</SPAN>
+<a name="skip_Module_Navigation_Links_H"></a>
+</DIV>
+<TABLE  CLASS="plaintable" SUMMARY="This table displays Menu Items and Banner Search textbox."
+         WIDTH="100%">
+<TR>
+<TD CLASS="pldefault">
+<DIV class="headerlinksdiv2">
+<FORM ACTION="/pls/prod/twbksrch.P_ShowResults" METHOD="POST">
+Search
+<SPAN class="fieldlabeltextinvisible"><LABEL for=keyword_in_id><SPAN class="fieldlabeltext">Search</SPAN></LABEL></SPAN>
+<INPUT TYPE="text" NAME="KEYWRD_IN" SIZE="20" MAXLENGTH="65" ID="keyword_in_id">
+<INPUT TYPE="submit" VALUE="Go">
+</FORM>
+</div>
+</TD>
+<TD CLASS="pldefault"><p class="rightaligntext"></p>
+<SPAN class="pageheaderlinks">
+<A HREF="/pls/prod/twbksite.P_DispSiteMap?menu_name_in=bmenu.P_MainMnu&amp;depth_in=2&amp;columns_in=3" accesskey="2" class="submenulinktext2">SITE MAP</A>
+|
+<A HREF="/wtlhelp/twbhhelp.htm" accesskey="H" onClick="popup = window.open('/wtlhelp/twbhhelp.htm', 'PopupPage','height=500,width=450,scrollbars=yes,resizable=yes'); return false" target="_blank" onMouseOver="window.status='';  return true" onMouseOut="window.status=''; return true"onFocus="window.status='';  return true" onBlur="window.status=''; return true"  class="submenulinktext2">HELP</A>
+|
+<A HREF="twbkwbis.P_Logout" accesskey="3" class="submenulinktext2">EXIT</A>
+</span>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV class="pagetitlediv">
+<TABLE  CLASS="plaintable" SUMMARY="This table displays title and static header displays."
+   WIDTH="100%">
+<TR>
+<TD CLASS="pldefault">
+<H2>Advising Information Summary</H2>
+</TD>
+<TD CLASS="pldefault">
+&nbsp;
+</TD>
+<TD CLASS="pldefault"><p class="rightaligntext"></p>
+<DIV class="staticheaders">
+</div>
+</TD>
+</TR>
+<TR>
+<TD class="bg3" width="100%" colSpan=3><IMG SRC="/wtlgifs/web_transparent.gif" ALT="Transparent Image" CLASS="headerImg" TITLE="Transparent Image"  NAME="web_transparent" HSPACE=0 VSPACE=0 BORDER=0 HEIGHT=3 WIDTH=10></TD>
+</TR>
+</TABLE>
+<a name="main_content"></a>
+</DIV>
+<DIV class="pagebodydiv">
+<!--  ** END OF twbkwbis.P_OpenDoc **  -->
+<DIV class="footerlinksdiv">
+<SPAN class="pagefooterlinks">
+<MAP NAME="Advising_Information_Summary_Links_F" title="Advising Information Summary Links">
+<p>
+<A HREF="#skip_Advising_Information_Summary_Links_F" onMouseover="window.status='Skip Advising Information Summary Links'; return true" onMouseout="window.status=''; return true" onFocus="window.status='Skip Advising Information Summary Links'; return true" onBlur="window.status=''; return true"  class="skiplinks">Skip Advising Information Summary Links</A>
+<P>[ <A HREF="/pls/prod/bwskotrn.P_ViewTermTran" onMouseover="window.status='Unofficial Transcript'; return true" onMouseout="window.status=''; return true" onFocus="window.status='Unofficial Transcript'; return true" onBlur="window.status=''; return true" >Unofficial Transcript</A>
+ | <A HREF="/pls/prod/hwwksadv.P_Prefs" onMouseover="window.status='Maintain Preferences'; return true" onMouseout="window.status=''; return true" onFocus="window.status='Maintain Preferences'; return true" onBlur="window.status=''; return true" >Maintain Preferences</A>
+ ]
+</MAP>
+</SPAN>
+<a name="skip_Advising_Information_Summary_Links_F"></a>
+</DIV>
+<BR>
+<IMG SRC="/photos/76389.jpg" WIDTH="90px">
+<BR>
+<B>Primary Advisor:&nbsp;</B>
+Norman D. Wilkinson
+<BR>
+<b>Email:</b> <A HREF="mailto:nwilkins@WPI.EDU">nwilkins@WPI.EDU</A> <b>Phone:</b>  <b>Other:</b> 
+<BR>
+<b>Advisor Department:</b> 
+<BR>
+<b>Office Location:</b> Washburn Shops 218
+<BR>
+<BR>
+<BR>
+<B>Major:&nbsp;</B>
+Computer Science
+<BR>
+<B>Class:&nbsp;</B>
+Class of 18
+<BR>
+<B>No Alerts</B>
+<BR>
+<BR>
+<b>Ungraded Activity</b>
+<BR>
+<BR>
+<TABLE  CLASS="datadisplaytable" cellspacing="0" border="1">
+<TH CLASS="ddtitle" scope="colgroup" ><p class="centeraligntext">Academic Yr</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="169"><p class="centeraligntext">A Term</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="169"><p class="centeraligntext">B Term</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="169"><p class="centeraligntext">C Term</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="169"><p class="centeraligntext">D Term</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="169"><p class="centeraligntext">E Term</p></TH>
+<TR>
+<TR>
+<TD CLASS="dddefault"><p class="centeraligntext">14-15</p></TD>
+<TD CLASS="dddefault"style="font-family: courier">CS1102&nbsp;&nbsp;&nbsp;A02&nbsp;&nbsp;&nbsp;&nbsp;1/3</TD>
+<TD CLASS="dddefault"style="font-family: courier">CS2102&nbsp;&nbsp;&nbsp;B05&nbsp;&nbsp;&nbsp;&nbsp;1/3</TD>
+<TD CLASS="dddefault"style="font-family: courier">&nbsp;</TD>
+<TD CLASS="dddefault"style="font-family: courier">&nbsp;</TD>
+<TD CLASS="dddefault"style="font-family: courier">&nbsp;</TD>
+</TR>
+<TR>
+<TD CLASS="dddefault">&nbsp;</TD>
+<TD CLASS="dddefault"style="font-family: courier">MA1023&nbsp;&nbsp;&nbsp;A03A&nbsp;&nbsp;&nbsp;1/3</TD>
+<TD CLASS="dddefault"style="font-family: courier">MA1024&nbsp;&nbsp;&nbsp;B10A&nbsp;&nbsp;&nbsp;1/3</TD>
+<TD CLASS="dddefault"style="font-family: courier">&nbsp;</TD>
+<TD CLASS="dddefault"style="font-family: courier">&nbsp;</TD>
+<TD CLASS="dddefault"style="font-family: courier">&nbsp;</TD>
+</TR>
+<TR>
+<TD CLASS="dddefault">&nbsp;</TD>
+<TD CLASS="dddefault"style="font-family: courier">PH1111&nbsp;&nbsp;&nbsp;A12&nbsp;&nbsp;&nbsp;&nbsp;1/3</TD>
+<TD CLASS="dddefault"style="font-family: courier">PH1121&nbsp;&nbsp;&nbsp;B02&nbsp;&nbsp;&nbsp;&nbsp;1/3</TD>
+<TD CLASS="dddefault"style="font-family: courier">&nbsp;</TD>
+<TD CLASS="dddefault"style="font-family: courier">&nbsp;</TD>
+<TD CLASS="dddefault"style="font-family: courier">&nbsp;</TD>
+</TR>
+</TABLE>
+<BR>
+</TABLE>
+<BR>
+<br clear="all" style="page-break-before:always" />
+<b>Proposed Schedule as of May 24, 2014 02:58.55 AM</b>
+<BR>
+<BR>
+<FORM ACTION="/pls/prod/hwwksadv.P_Summary" METHOD="POST">
+<INPUT TYPE="hidden" NAME="proposed_action" VALUE="u">
+<TABLE  CLASS="datadisplaytable" cellspacing="0" border="1">
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">2014/2015</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">1st Selection</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">2nd Selection</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">3rd Selection</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">4th Selection</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">5th Selection</p></TH>
+<TR>
+<TH CLASS="ddlabel" scope="row" >Term A</TH>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termA11" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termA12" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termA13" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termA14" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termA15" SIZE="20" MAXLENGTH="19"></TD>
+</TR>
+<TR>
+<TH CLASS="ddlabel" scope="row" >Term B</TH>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termB11" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termB12" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termB13" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termB14" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termB15" SIZE="20" MAXLENGTH="19"></TD>
+</TR>
+<TR>
+<TH CLASS="ddlabel" scope="row" >Term C</TH>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termC11" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termC12" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termC13" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termC14" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termC15" SIZE="20" MAXLENGTH="19"></TD>
+</TR>
+<TR>
+<TH CLASS="ddlabel" scope="row" >Term D</TH>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termD11" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termD12" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termD13" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termD14" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termD15" SIZE="20" MAXLENGTH="19"></TD>
+</TR>
+<TR>
+<TH CLASS="ddlabel" scope="row" >Term E</TH>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termE11" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termE12" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termE13" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termE14" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termE15" SIZE="20" MAXLENGTH="19"></TD>
+</TR>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">2015/2016</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">1st Selection</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">2nd Selection</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">3rd Selection</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">4th Selection</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">5th Selection</p></TH>
+<TR>
+<TH CLASS="ddlabel" scope="row" >Term A</TH>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termA21" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termA22" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termA23" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termA24" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termA25" SIZE="20" MAXLENGTH="19"></TD>
+</TR>
+<TR>
+<TH CLASS="ddlabel" scope="row" >Term B</TH>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termB21" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termB22" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termB23" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termB24" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termB25" SIZE="20" MAXLENGTH="19"></TD>
+</TR>
+<TR>
+<TH CLASS="ddlabel" scope="row" >Term C</TH>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termC21" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termC22" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termC23" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termC24" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termC25" SIZE="20" MAXLENGTH="19"></TD>
+</TR>
+<TR>
+<TH CLASS="ddlabel" scope="row" >Term D</TH>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termD21" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termD22" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termD23" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termD24" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termD25" SIZE="20" MAXLENGTH="19"></TD>
+</TR>
+<TR>
+<TH CLASS="ddlabel" scope="row" >Term E</TH>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termE21" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termE22" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termE23" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termE24" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termE25" SIZE="20" MAXLENGTH="19"></TD>
+</TR>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">2016/2017</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">1st Selection</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">2nd Selection</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">3rd Selection</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">4th Selection</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">5th Selection</p></TH>
+<TR>
+<TH CLASS="ddlabel" scope="row" >Term A</TH>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termA31" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termA32" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termA33" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termA34" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termA35" SIZE="20" MAXLENGTH="19"></TD>
+</TR>
+<TR>
+<TH CLASS="ddlabel" scope="row" >Term B</TH>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termB31" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termB32" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termB33" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termB34" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termB35" SIZE="20" MAXLENGTH="19"></TD>
+</TR>
+<TR>
+<TH CLASS="ddlabel" scope="row" >Term C</TH>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termC31" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termC32" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termC33" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termC34" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termC35" SIZE="20" MAXLENGTH="19"></TD>
+</TR>
+<TR>
+<TH CLASS="ddlabel" scope="row" >Term D</TH>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termD31" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termD32" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termD33" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termD34" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termD35" SIZE="20" MAXLENGTH="19"></TD>
+</TR>
+<TR>
+<TH CLASS="ddlabel" scope="row" >Term E</TH>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termE31" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termE32" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termE33" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termE34" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termE35" SIZE="20" MAXLENGTH="19"></TD>
+</TR>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">2017/2018</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">1st Selection</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">2nd Selection</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">3rd Selection</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">4th Selection</p></TH>
+<TH CLASS="ddtitle" scope="colgroup" width="158"><p class="centeraligntext">5th Selection</p></TH>
+<TR>
+<TH CLASS="ddlabel" scope="row" >Term A</TH>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="terma41" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="terma42" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="terma43" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="terma44" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="terma45" SIZE="20" MAXLENGTH="19"></TD>
+</TR>
+<TR>
+<TH CLASS="ddlabel" scope="row" >Term B</TH>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termb41" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termb42" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termb43" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termb44" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termb45" SIZE="20" MAXLENGTH="19"></TD>
+</TR>
+<TR>
+<TH CLASS="ddlabel" scope="row" >Term C</TH>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termc41" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termc42" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termc43" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termc44" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termc45" SIZE="20" MAXLENGTH="19"></TD>
+</TR>
+<TR>
+<TH CLASS="ddlabel" scope="row" >Term D</TH>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termd41" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termd42" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termd43" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termd44" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="termd45" SIZE="20" MAXLENGTH="19"></TD>
+</TR>
+<TR>
+<TH CLASS="ddlabel" scope="row" >Term E</TH>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="terme41" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="terme42" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="terme43" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="terme44" SIZE="20" MAXLENGTH="19"></TD>
+<TD CLASS="dddefault"><INPUT TYPE="text" NAME="terme45" SIZE="20" MAXLENGTH="19"></TD>
+</TR>
+</TABLE>
+<INPUT TYPE="submit" VALUE="Submit Proposed Schedule"></FORM>
+<br clear="all" style="page-break-before:always" />
+<BR>
+<FORM ACTION="/pls/prod/hwwksadv.P_Summary" METHOD="POST">
+<INPUT TYPE="hidden" NAME="cmt_action" VALUE="c">
+
+<TABLE  CLASS="datadisplaytable" >
+<TH CLASS="ddlabel" scope="row" >New Comment</TH>
+<TR>
+<TD CLASS="dddefault"><TEXTAREA NAME="cmt_text" ROWS=20 COLS=80 WRAP="virtual"></TEXTAREA></TD>
+<TD CLASS="dddefault"><b>This comment should be available to:</b><br><INPUT TYPE="radio" NAME="viewer" VALUE="me" CHECKED> No advisor<INPUT TYPE="radio" NAME="viewer" VALUE="curr"> Primary Advisor <INPUT TYPE="radio" NAME="viewer" VALUE="any"> My advisors<br><INPUT TYPE="submit" VALUE="Create Comment"></TD>
+</TR>
+</TABLE>
+</FORM>
+
+<!--  ** START OF twbkwbis.P_CloseDoc **  -->
+<TABLE  CLASS="plaintable" SUMMARY="This is table displays line separator at end of the page."
+                                             WIDTH="100%" cellSpacing=0 cellPadding=0 border=0><TR><TD class="bgtabon" width="100%" colSpan=2><IMG SRC="/wtlgifs/web_transparent.gif" ALT="Transparent Image" CLASS="headerImg" TITLE="Transparent Image"  NAME="web_transparent" HSPACE=0 VSPACE=0 BORDER=0 HEIGHT=3 WIDTH=10></TD></TR></TABLE>
+<A HREF="#top" onMouseover="window.status='Skip to top of page'; return true" onMouseout="window.status=''; return true" OnFocus="window.status='Skip to top of page'; return true" onBlur="window.status=''; return true" class="skiplinks">Skip to top of page</A>
+</DIV>
+<DIV class="footerbeforediv">
+
+</DIV>
+<DIV class="footerlinksdiv">
+<SPAN class="pagefooterlinks">
+<MAP NAME="Advising_Information_Summary_Links_F" title="Advising Information Summary Links">
+<p>
+<A HREF="#skip_Advising_Information_Summary_Links_F" onMouseover="window.status='Skip Advising Information Summary Links'; return true" onMouseout="window.status=''; return true" onFocus="window.status='Skip Advising Information Summary Links'; return true" onBlur="window.status=''; return true"  class="skiplinks">Skip Advising Information Summary Links</A>
+<P>[ <A HREF="/pls/prod/bwskotrn.P_ViewTermTran" onMouseover="window.status='Unofficial Transcript'; return true" onMouseout="window.status=''; return true" onFocus="window.status='Unofficial Transcript'; return true" onBlur="window.status=''; return true" >Unofficial Transcript</A>
+ | <A HREF="/pls/prod/hwwksadv.P_Prefs" onMouseover="window.status='Maintain Preferences'; return true" onMouseout="window.status=''; return true" onFocus="window.status='Maintain Preferences'; return true" onBlur="window.status=''; return true" >Maintain Preferences</A>
+ ]
+</MAP>
+</SPAN>
+<a name="skip_Advising_Information_Summary_Links_F"></a>
+</DIV>
+<DIV class="footerafterdiv">
+
+</DIV>
+<DIV class="globalafterdiv">
+
+</DIV>
+<DIV class="globalfooterdiv">
+
+</DIV>
+<DIV class="pagefooterdiv">
+<SPAN class="releasetext">Release: 1.0</SPAN>
+</DIV>
+<DIV class="poweredbydiv">
+</DIV>
+<DIV class="div1"></DIV>
+<DIV class="div2"></DIV>
+<DIV class="div3"></DIV>
+<DIV class="div4"></DIV>
+<DIV class="div5"></DIV>
+<DIV class="div6"></DIV>
+<div class="banner_copyright"> <br><h5>© 2014 Ellucian Company L.P. and its affiliates.<br></h5></div>
+</BODY>
+</HTML>
