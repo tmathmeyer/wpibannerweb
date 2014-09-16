@@ -1,8 +1,11 @@
 wpibannerweb
 ============
 
-a bannerweb android app
+Android App interface for the WPI BannerWeb Student Informatino System
 
-Peter's push
-
-Cuong's push
+Features:
+-check data:
+ advisor information
+ card balances
+ class schedule
+ mailbox information
