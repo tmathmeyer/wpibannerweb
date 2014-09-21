@@ -48,7 +48,6 @@ public class Content implements Runnable {
 
 	@Override
 	public void run() {
-		Log.d("ndtc", "Content.run");
 		Content.loadResources();
 	}
 }
