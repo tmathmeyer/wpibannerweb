@@ -45,9 +45,7 @@ public class AdvisorInfo extends Page {
 		contentMap.put(PRIMARY_ADVISOR, name);
 		
 		Element emailE = body.getElementsByAttributeValueContaining("href", "mailto").first();
-		Log.d("ndtc", emailE.toString());
 		String email = emailE.text().trim();
-		Log.d("ndtc", emailE.text());
 		contentMap.put(EMAIL, email);
 		
 		Element departmentE = body.getElementsContainingOwnText(DEPARTMENT).first();
