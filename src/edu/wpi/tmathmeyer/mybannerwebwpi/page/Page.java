@@ -2,8 +2,10 @@ package edu.wpi.tmathmeyer.mybannerwebwpi.page;
 
 import java.util.HashMap;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.View.OnCreateContextMenuListener;
 
 public abstract class Page extends Fragment {
 
@@ -27,7 +29,6 @@ public abstract class Page extends Fragment {
 		this.mTitle = title;
 	}
 
-	
 	public abstract void loadContent(String html);
 	
 	public abstract void fillContent();
@@ -37,7 +38,6 @@ public abstract class Page extends Fragment {
 	}
 	
 	public static Page newInstance(Class<?> pageType, String title, String url) {
-		Log.d("ndtc", "Page.newInstance");
 		try {
 			Page newPage = (Page) pageType.newInstance();
 			newPage.setUrl(url);
@@ -49,6 +49,12 @@ public abstract class Page extends Fragment {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setRetainInstance(true);
 	}
 	
 }
