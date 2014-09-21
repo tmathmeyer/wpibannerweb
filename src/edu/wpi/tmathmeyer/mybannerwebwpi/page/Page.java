@@ -11,7 +11,7 @@ public abstract class Page extends Fragment {
 
 	private String mUrl;
 	private String mTitle;
-	public HashMap<String, String> contentMap = new HashMap<String, String>();
+	protected HashMap<String, String> contentMap = new HashMap<String, String>();
 
 	public String getUrl() {
 		return mUrl;

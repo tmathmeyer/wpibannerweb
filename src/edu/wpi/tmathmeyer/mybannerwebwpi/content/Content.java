@@ -5,10 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.util.Log;
 import edu.wpi.tmathmeyer.mybannerwebwpi.WebReader;
-import edu.wpi.tmathmeyer.mybannerwebwpi.page.AdvisorInfo;
-import edu.wpi.tmathmeyer.mybannerwebwpi.page.Page;
+import edu.wpi.tmathmeyer.mybannerwebwpi.page.*;
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -22,7 +20,7 @@ public class Content implements Runnable {
 	public static Map<String, Page> item_map = new HashMap<String, Page>();
 
 	static {
-		//addPage((MailBox)Page.newInstance("Mail Box Information", "hwwkboxs.P_ViewBoxs"));
+		addPage(Page.newInstance(MailBox.class, "Mail Box Information", "hwwkboxs.P_ViewBoxs"));
 		//addPage((MealPlan)Page.newInstance("Meal Plan Balances", "hwwkcbrd.P_Display"));
 		addPage(Page.newInstance(AdvisorInfo.class, "Academic Advisor Information", "hwwksadv.P_Summary"));
 		//addPage((CalendarSchedule)Page.newInstance("Calendar Schedule","bwskfshd.P_CrseSchd?start_date_in=[DATE]"));
