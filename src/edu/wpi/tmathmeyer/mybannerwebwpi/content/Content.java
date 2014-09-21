@@ -24,14 +24,12 @@ public class Content implements Runnable {
 	static {
 		//addPage((MailBox)Page.newInstance("Mail Box Information", "hwwkboxs.P_ViewBoxs"));
 		//addPage((MealPlan)Page.newInstance("Meal Plan Balances", "hwwkcbrd.P_Display"));
-		Log.d("ndtc", "static block");
 		addPage(Page.newInstance(AdvisorInfo.class, "Academic Advisor Information", "hwwksadv.P_Summary"));
 		//addPage((CalendarSchedule)Page.newInstance("Calendar Schedule","bwskfshd.P_CrseSchd?start_date_in=[DATE]"));
 		//addPage((DetailSchedule)Page.newInstance("Detail Schedule", "bwskfshd.P_CrseSchdDetl"));
 	}
 
 	private static void addPage(Page page) {
-		Log.d("ndtc", "Content.addPage");
 		items.add(page);
 		item_map.put(page.getUrl(), page);
 	}
@@ -43,7 +41,6 @@ public class Content implements Runnable {
 	}
 
 	public static void loadResource(Page page) {
-		Log.d("ndtc", "Content.loadResource");
 		String pageHtml = WebReader.getInstance("", "").sendGetRequest(
 				"https://bannerweb.wpi.edu/pls/prod/" + page.getUrl());
 		page.loadContent(pageHtml);
