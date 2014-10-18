@@ -1,5 +1,7 @@
 package edu.wpi.tmathmeyer.mybannerwebwpi;
 
+import edu.wpi.tmathmeyer.mybannerwebwpi.content.Content;
+import edu.wpi.tmathmeyer.mybannerwebwpi.page.Page;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -15,7 +17,12 @@ import android.view.MenuItem;
  * a {@link InfoDetailFragment}.
  */
 public class InfoDetailActivity extends FragmentActivity {
-
+	
+	/**
+	 * The ID for the extra string in the intent passed to this activity   
+	 */
+	public static final String ARG_ITEM_ID = "item_id";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,13 +43,9 @@ public class InfoDetailActivity extends FragmentActivity {
 		if (savedInstanceState == null) {
 			// Create the detail fragment and add it to the activity
 			// using a fragment transaction.
-			Bundle arguments = new Bundle();
-			arguments.putString(InfoDetailFragment.ARG_ITEM_ID, getIntent()
-					.getStringExtra(InfoDetailFragment.ARG_ITEM_ID));
-			InfoDetailFragment fragment = new InfoDetailFragment();
-			fragment.setArguments(arguments);
+			Page mPage = Content.item_map.get(getIntent().getStringExtra(ARG_ITEM_ID));
 			getSupportFragmentManager().beginTransaction()
-					.add(R.id.info_detail_container, fragment).commit();
+					.replace(R.id.info_detail_container, mPage).commit();
 		}
 	}
 

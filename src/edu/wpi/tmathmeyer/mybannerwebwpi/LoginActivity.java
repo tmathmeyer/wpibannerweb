@@ -47,8 +47,6 @@ public class LoginActivity extends Activity {
 	private View mLoginFormView;
 	private View mLoginStatusView;
 	private TextView mLoginStatusMessageView;
-	
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -206,31 +204,33 @@ public class LoginActivity extends Activity {
 			showProgress(false);
 
 			if (success) {
-				try{
+				try {
 					deleteFile("usr");
-					
+
 					FileOutputStream fos;
-					
+
 					fos = openFileOutput("usr", Context.MODE_PRIVATE);
 					fos.write(mEmail.length());
 					fos.write(mEmail.getBytes());
 					fos.close();
-					
+
 					fos = openFileOutput("pwd", Context.MODE_PRIVATE);
 					fos.write(mPassword.length());
 					fos.write(mPassword.getBytes());
 					fos.close();
-				}
-				catch(Exception e){
+				} catch (Exception e) {
 					Log.d("BB+", e.toString());
 				}
-				
-				
 				new Thread(new Content()).start();
-				Intent intent = new Intent(LoginActivity.this, InfoListActivity.class);
+				
+				Intent intent = new Intent(LoginActivity.this,
+						InfoListActivity.class);
 				LoginActivity.this.startActivity(intent);
 				LoginActivity.this.finish();
 			} else {
+				// this can happen if password is wrong OR if there's no
+				// internet
+				// we should differentiate between those two at some point...
 				WebReader.killInstance();
 				mPasswordView
 						.setError(getString(R.string.error_incorrect_password));

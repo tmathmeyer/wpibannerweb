@@ -1,59 +1,91 @@
 package edu.wpi.tmathmeyer.mybannerwebwpi.page;
 
-import android.text.Html;
-import android.util.Log;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
-public class MailBox implements Page{
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import edu.wpi.tmathmeyer.mybannerwebwpi.R;
 
-	private String content = null;
-	private String html;
+public class MailBox extends Page {
+	
+	private static final String BOX = "Box Number";
+	private static final String DIR1 = "Direction 1";
+	private static final String NUM1 = "Number 1";
+	private static final String DIR2 = "Direction 2";
+	private static final String NUM2 = "Number 2";
+	private static final String DIR3 = "Direction 3";
+	private static final String NUM3 = "Number 3";
+	private static final String DIR4 = "Direction 4";
 	
 	@Override
-	public String getContent() {
-		if (this.content == null)
-			this.parse();
-		return this.content;
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 	}
 
 	@Override
-	public void setHTML(String html) {
-		this.html = html;
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		return inflater.inflate(R.layout.mailbox, container, false);
 	}
 	
-	private void parse() {
-		try{
-			String[] lines = html.split("\n");
-			String boxnum = null;
-			String combo = null;
-			
-			for(int i = 100; i<lines.length; i++){
-				if (lines[i].contains("datadisplaytable")){
-					String[] info = new String[4];
-					int pos = 0;
-					for(int j = i+2; pos<4; j+=3){
-						if (lines[j].contains("<B>")) {
-							String[] p = lines[j].split("B>");
-							info[pos] = p[p.length-2].replaceAll("</", "");
-							pos++;
-						}
-					}
-					boxnum = info[0];
-					combo = info[1]+" : "+info[2]+" : "+info[3];
-				}
-			}
-			this.content = "Mail Box Number:\n   "+boxnum+"\n\n\nCombination:\n   "+combo;
-		}
-		catch(Exception e){
-			for(StackTraceElement k : e.getStackTrace()){
-				Log.d("BB+","String Error!: "+k.toString());
-			}
-		}
+	@Override 
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		fillContent();
 	}
 	
-	private static String mult(int i, String s){
-		Log.d("BB+", i+"");
-		if (i<=1)return s;
-		if (i%2==1)return s + mult(i-1, s);
-		return mult(i/2, s+s);
+	@Override
+	public void loadContent(String html) {
+		Document doc = Jsoup.parse(html, "https://bannerweb.wpi.edu/pls/prod/");
+		Element body = doc.body();
+		
+		Element boxE1 = body.getElementsContainingOwnText("You have been assigned").first();
+		Element boxE2 = boxE1.getElementsByTag("B").first();
+		String box = boxE2.text().trim();	
+		contentMap.put(BOX, box);
+		
+		Elements steps = body.getElementsContainingOwnText("Rotate the knob");
+		
+		Elements step1 = steps.get(0).getElementsByTag("B");
+		String dir1 = step1.get(0).text().trim();
+		String num1 = step1.get(1).text().trim();
+		contentMap.put(DIR1, dir1);
+		contentMap.put(NUM1, num1);
+		
+		Elements step2 = steps.get(1).getElementsByTag("B");
+		String dir2 = step2.get(0).text().trim();
+		String num2 = step2.get(1).text().trim();
+		contentMap.put(DIR2, dir2);
+		contentMap.put(NUM2, num2);
+		
+		Elements step3 = steps.get(2).getElementsByTag("B");
+		String dir3 = step3.get(0).text().trim();
+		String num3 = step3.get(1).text().trim();
+		contentMap.put(DIR3, dir3);
+		contentMap.put(NUM3, num3);
+		
+		Elements step4 = steps.get(3).getElementsByTag("B");
+		String dir4 = step4.get(0).text().trim();
+		contentMap.put(DIR4, dir4);
+	}
+	
+	@Override 
+	public void fillContent() {
+		TextView tvBoxNumber = (TextView) getView().findViewById(R.id.tv_box_number);
+		TextView tvStep1 = (TextView) getView().findViewById(R.id.tv_step1);
+		TextView tvStep2 = (TextView) getView().findViewById(R.id.tv_step2);
+		TextView tvStep3 = (TextView) getView().findViewById(R.id.tv_step3);
+		TextView tvStep4 = (TextView) getView().findViewById(R.id.tv_step4);
+		
+		tvBoxNumber.setText(contentMap.get(BOX));
+		tvStep1.setText(contentMap.get(DIR1) + " " + contentMap.get(NUM1));
+		tvStep2.setText(contentMap.get(DIR2) + " " + contentMap.get(NUM2));
+		tvStep3.setText(contentMap.get(DIR3) + " " + contentMap.get(NUM3));
+		tvStep4.setText(contentMap.get(DIR4));
 	}
 }

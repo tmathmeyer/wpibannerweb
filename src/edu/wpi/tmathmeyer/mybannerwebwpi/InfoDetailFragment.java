@@ -1,15 +1,13 @@
 package edu.wpi.tmathmeyer.mybannerwebwpi;
 
-import android.graphics.Typeface;
+import android.content.res.XmlResourceParser;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
 import edu.wpi.tmathmeyer.mybannerwebwpi.content.Content;
+import edu.wpi.tmathmeyer.mybannerwebwpi.page.Page;
 
 /**
  * A fragment representing a single Info detail screen. This fragment is either
@@ -26,7 +24,7 @@ public class InfoDetailFragment extends Fragment {
 	/**
 	 * The dummy content this fragment is presenting.
 	 */
-	private Content.Item mItem;
+	private Page mPage;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -38,29 +36,19 @@ public class InfoDetailFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		if (getArguments().containsKey(ARG_ITEM_ID)) {
 			// Load the dummy content specified by the fragment
 			// arguments. In a real-world scenario, use a Loader
 			// to load content from a content provider.
-			mItem = Content.ITEM_MAP.get(getArguments().getString(
-					ARG_ITEM_ID));
+			mPage = Content.item_map.get(getArguments().getString(ARG_ITEM_ID));
 		}
 	}
-
+/*
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_info_detail,
-				container, false);
-
-		if (mItem != null) {
-			WebReader.getInstance("", "").sendGetRequest("https://bannerweb.wpi.edu/pls/prod/"+mItem.id);
-			((TextView) rootView.findViewById(R.id.info_detail)).setTypeface(Typeface.MONOSPACE); 
-			((TextView) rootView.findViewById(R.id.info_detail))
-					.setText(mItem.HTML);
-		}
-
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		XmlResourceParser fragmentLayout = this.getResources().getLayout(mPage.layoutId);
+		View rootView = inflater.inflate(fragmentLayout, container, false);
 		return rootView;
 	}
+*/
 }
