@@ -26,7 +26,8 @@ import android.widget.TextView;
  * Activity which displays a login screen to the user, offering registration as
  * well.
  */
-public class LoginActivity extends Activity {
+public class LoginActivity extends Activity
+{
 	/**
 	 * The default email to populate the email field with.
 	 */
@@ -49,7 +50,8 @@ public class LoginActivity extends Activity {
 	private TextView mLoginStatusMessageView;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_login);
@@ -60,34 +62,35 @@ public class LoginActivity extends Activity {
 		mEmailView.setText(mEmail);
 
 		mPasswordView = (EditText) findViewById(R.id.password);
-		mPasswordView
-				.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-					@Override
-					public boolean onEditorAction(TextView textView, int id,
-							KeyEvent keyEvent) {
-						if (id == R.id.login || id == EditorInfo.IME_NULL) {
-							attemptLogin();
-							return true;
-						}
-						return false;
-					}
-				});
+		mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent)
+			{
+				if (id == R.id.login || id == EditorInfo.IME_NULL)
+				{
+					attemptLogin();
+					return true;
+				}
+				return false;
+			}
+		});
 
 		mLoginFormView = findViewById(R.id.login_form);
 		mLoginStatusView = findViewById(R.id.login_status);
 		mLoginStatusMessageView = (TextView) findViewById(R.id.login_status_message);
 
-		findViewById(R.id.sign_in_button).setOnClickListener(
-				new View.OnClickListener() {
-					@Override
-					public void onClick(View view) {
-						attemptLogin();
-					}
-				});
+		findViewById(R.id.sign_in_button).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view)
+			{
+				attemptLogin();
+			}
+		});
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
 		super.onCreateOptionsMenu(menu);
 		getMenuInflater().inflate(R.menu.login, menu);
 		return true;
@@ -98,8 +101,10 @@ public class LoginActivity extends Activity {
 	 * If there are form errors (invalid email, missing fields, etc.), the
 	 * errors are presented and no actual login attempt is made.
 	 */
-	public void attemptLogin() {
-		if (mAuthTask != null) {
+	public void attemptLogin()
+	{
+		if (mAuthTask != null)
+		{
 			return;
 		}
 
@@ -115,28 +120,33 @@ public class LoginActivity extends Activity {
 		View focusView = null;
 
 		// Check for a valid password.
-		if (TextUtils.isEmpty(mPassword)) {
+		if (TextUtils.isEmpty(mPassword))
+		{
 			mPasswordView.setError(getString(R.string.error_field_required));
 			focusView = mPasswordView;
 			cancel = true;
-		} else if (mPassword.length() < 4) {
+		} else if (mPassword.length() < 4)
+		{
 			mPasswordView.setError(getString(R.string.error_invalid_password));
 			focusView = mPasswordView;
 			cancel = true;
 		}
 
 		// Check for a valid email address.
-		if (TextUtils.isEmpty(mEmail)) {
+		if (TextUtils.isEmpty(mEmail))
+		{
 			mEmailView.setError(getString(R.string.error_field_required));
 			focusView = mEmailView;
 			cancel = true;
 		}
 
-		if (cancel) {
+		if (cancel)
+		{
 			// There was an error; don't attempt login and focus the first
 			// form field with an error.
 			focusView.requestFocus();
-		} else {
+		} else
+		{
 			// Show a progress spinner, and kick off a background task to
 			// perform the user login attempt.
 			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
@@ -150,37 +160,37 @@ public class LoginActivity extends Activity {
 	 * Shows the progress UI and hides the login form.
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-	private void showProgress(final boolean show) {
+	private void showProgress(final boolean show)
+	{
 		// On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
 		// for very easy animations. If available, use these APIs to fade-in
 		// the progress spinner.
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-			int shortAnimTime = getResources().getInteger(
-					android.R.integer.config_shortAnimTime);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2)
+		{
+			int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
 			mLoginFormView.setBackgroundColor(Color.rgb(172, 44, 55));
 			mLoginStatusView.setVisibility(View.VISIBLE);
-			mLoginStatusView.animate().setDuration(shortAnimTime)
-					.alpha(show ? 1 : 0)
-					.setListener(new AnimatorListenerAdapter() {
-						@Override
-						public void onAnimationEnd(Animator animation) {
-							mLoginStatusView.setVisibility(show ? View.VISIBLE
-									: View.GONE);
-						}
-					});
+			mLoginStatusView.animate().setDuration(shortAnimTime).alpha(show ? 1 : 0)
+			        .setListener(new AnimatorListenerAdapter() {
+				        @Override
+				        public void onAnimationEnd(Animator animation)
+				        {
+					        mLoginStatusView.setVisibility(show ? View.VISIBLE : View.GONE);
+				        }
+			        });
 
 			mLoginFormView.setVisibility(View.VISIBLE);
-			mLoginFormView.animate().setDuration(shortAnimTime)
-					.alpha(show ? 0 : 1)
-					.setListener(new AnimatorListenerAdapter() {
-						@Override
-						public void onAnimationEnd(Animator animation) {
-							mLoginFormView.setVisibility(show ? View.GONE
-									: View.VISIBLE);
-						}
-					});
-		} else {
+			mLoginFormView.animate().setDuration(shortAnimTime).alpha(show ? 0 : 1)
+			        .setListener(new AnimatorListenerAdapter() {
+				        @Override
+				        public void onAnimationEnd(Animator animation)
+				        {
+					        mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+				        }
+			        });
+		} else
+		{
 			// The ViewPropertyAnimator APIs are not available, so simply show
 			// and hide the relevant UI components.
 			mLoginStatusView.setVisibility(show ? View.VISIBLE : View.GONE);
@@ -192,19 +202,37 @@ public class LoginActivity extends Activity {
 	 * Represents an asynchronous login/registration task used to authenticate
 	 * the user.
 	 */
-	public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+	public class UserLoginTask extends AsyncTask<Void, Void, Boolean>
+	{
 		@Override
-		protected Boolean doInBackground(Void... params) {
-			return WebReader.getInstance(mEmail, mPassword).initLogin();
+		protected Boolean doInBackground(Void... params)
+		{
+			try
+            {
+	            return BannerWebReader.getInstance().activate(mEmail, mPassword) != null;
+            }
+			catch (BannerwebException e)
+            {
+	            Log.e("BB+", e.toString());
+            }
+			catch (Exception e)
+			{
+				
+			}
+			return false;
 		}
 
 		@Override
-		protected void onPostExecute(final Boolean success) {
+		protected void onPostExecute(final Boolean success)
+		{
 			mAuthTask = null;
 			showProgress(false);
+			int errcode = 0;
 
-			if (success) {
-				try {
+			if (success)
+			{
+				try
+				{
 					deleteFile("usr");
 
 					FileOutputStream fos;
@@ -218,28 +246,32 @@ public class LoginActivity extends Activity {
 					fos.write(mPassword.length());
 					fos.write(mPassword.getBytes());
 					fos.close();
-				} catch (Exception e) {
+				} catch (Exception e)
+				{
+					e.getStackTrace();
+					for (StackTraceElement ste : e.getStackTrace())
+					{
+						Log.d("BB+", ">> " + ste.toString());
+					}
 					Log.d("BB+", e.toString());
 				}
 				new Thread(new Content()).start();
-				
-				Intent intent = new Intent(LoginActivity.this,
-						InfoListActivity.class);
+
+				Intent intent = new Intent(LoginActivity.this, InfoListActivity.class);
 				LoginActivity.this.startActivity(intent);
 				LoginActivity.this.finish();
-			} else {
-				// this can happen if password is wrong OR if there's no
-				// internet
-				// we should differentiate between those two at some point...
-				WebReader.killInstance();
-				mPasswordView
-						.setError(getString(R.string.error_incorrect_password));
+			}
+			else
+			{
+				BannerWebReader.deactivate();
+				mPasswordView.setError(getString(R.string.error_incorrect_password) + "(" + errcode + ")");
 				mPasswordView.requestFocus();
 			}
 		}
 
 		@Override
-		protected void onCancelled() {
+		protected void onCancelled()
+		{
 			mAuthTask = null;
 			showProgress(false);
 		}

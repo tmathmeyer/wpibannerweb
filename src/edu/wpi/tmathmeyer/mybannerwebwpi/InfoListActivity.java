@@ -21,8 +21,8 @@ import android.support.v4.app.FragmentActivity;
  * This activity also implements the required {@link InfoListFragment.Callbacks}
  * interface to listen for item selections.
  */
-public class InfoListActivity extends FragmentActivity implements
-		InfoListFragment.Callbacks {
+public class InfoListActivity extends FragmentActivity implements InfoListFragment.Callbacks
+{
 
 	/**
 	 * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -31,11 +31,13 @@ public class InfoListActivity extends FragmentActivity implements
 	private boolean mTwoPane;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_info_list);
 
-		if (findViewById(R.id.info_detail_container) != null) {
+		if (findViewById(R.id.info_detail_container) != null)
+		{
 			// The detail container view will be present only in the
 			// large-screen layouts (res/values-large and
 			// res/values-sw600dp). If this view is present, then the
@@ -44,8 +46,8 @@ public class InfoListActivity extends FragmentActivity implements
 
 			// In two-pane mode, list items should be given the
 			// 'activated' state when touched.
-			((InfoListFragment) getSupportFragmentManager().findFragmentById(
-					R.id.info_list)).setActivateOnItemClick(true);
+			((InfoListFragment) getSupportFragmentManager().findFragmentById(R.id.info_list))
+			        .setActivateOnItemClick(true);
 		}
 
 		// TODO: If exposing deep links into your app, handle intents here.
@@ -56,16 +58,18 @@ public class InfoListActivity extends FragmentActivity implements
 	 * the item with the given ID was selected.
 	 */
 	@Override
-	public void onItemSelected(String id) {	
-		if (mTwoPane) {
+	public void onItemSelected(String id)
+	{
+		if (mTwoPane)
+		{
 			// In two-pane mode, show the detail view in this activity by
 			// adding or replacing the detail fragment using a
 			// fragment transaction.
 			Page mPage = Content.item_map.get(id);
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.info_detail_container, mPage).commit();
+			getSupportFragmentManager().beginTransaction().replace(R.id.info_detail_container, mPage).commit();
 
-		} else {
+		} else
+		{
 			// In single-pane mode, simply start the detail activity
 			// for the selected item ID.
 			Intent detailIntent = new Intent(this, InfoDetailActivity.class);

@@ -16,12 +16,14 @@ import android.view.MotionEvent;
 import android.view.View;
 
 /**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
  * 
- * @see SystemUiHider
+ * @author ted
+ *
+ *         The main splash screen. This is what is shown to the user while the
+ *         system attempts to log in.
  */
-public class SplashActivity extends Activity {
+public class SplashActivity extends Activity
+{
 	/**
 	 * Whether or not the system UI should be auto-hidden after
 	 * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -51,7 +53,8 @@ public class SplashActivity extends Activity {
 	private SystemUiHider mSystemUiHider;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_splash);
@@ -61,56 +64,58 @@ public class SplashActivity extends Activity {
 
 		// Set up an instance of SystemUiHider to control the system UI for
 		// this activity.
-		mSystemUiHider = SystemUiHider.getInstance(this, contentView,
-				HIDER_FLAGS);
+		mSystemUiHider = SystemUiHider.getInstance(this, contentView, HIDER_FLAGS);
 		mSystemUiHider.setup();
-		mSystemUiHider
-				.setOnVisibilityChangeListener(new SystemUiHider.OnVisibilityChangeListener() {
-					// Cached values.
-					int mControlsHeight;
-					int mShortAnimTime;
+		mSystemUiHider.setOnVisibilityChangeListener(new SystemUiHider.OnVisibilityChangeListener() {
+			// Cached values.
+			int mControlsHeight;
+			int mShortAnimTime;
 
-					@Override
-					@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-					public void onVisibilityChange(boolean visible) {
-						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-							// If the ViewPropertyAnimator API is available
-							// (Honeycomb MR2 and later), use it to animate the
-							// in-layout UI controls at the bottom of the
-							// screen.
-							if (mControlsHeight == 0) {
-								mControlsHeight = controlsView.getHeight();
-							}
-							if (mShortAnimTime == 0) {
-								mShortAnimTime = getResources().getInteger(
-										android.R.integer.config_shortAnimTime);
-							}
-							controlsView
-									.animate()
-									.translationY(visible ? 0 : mControlsHeight)
-									.setDuration(mShortAnimTime);
-						} else {
-							// If the ViewPropertyAnimator APIs aren't
-							// available, simply show or hide the in-layout UI
-							// controls.
-							controlsView.setVisibility(visible ? View.VISIBLE
-									: View.GONE);
-						}
-
-						if (visible && AUTO_HIDE) {
-							// Schedule a hide().
-							delayedHide(AUTO_HIDE_DELAY_MILLIS);
-						}
+			@Override
+			@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+			public void onVisibilityChange(boolean visible)
+			{
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2)
+				{
+					// If the ViewPropertyAnimator API is available
+					// (Honeycomb MR2 and later), use it to animate the
+					// in-layout UI controls at the bottom of the
+					// screen.
+					if (mControlsHeight == 0)
+					{
+						mControlsHeight = controlsView.getHeight();
 					}
-				});
+					if (mShortAnimTime == 0)
+					{
+						mShortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+					}
+					controlsView.animate().translationY(visible ? 0 : mControlsHeight).setDuration(mShortAnimTime);
+				} else
+				{
+					// If the ViewPropertyAnimator APIs aren't
+					// available, simply show or hide the in-layout UI
+					// controls.
+					controlsView.setVisibility(visible ? View.VISIBLE : View.GONE);
+				}
+
+				if (visible && AUTO_HIDE)
+				{
+					// Schedule a hide().
+					delayedHide(AUTO_HIDE_DELAY_MILLIS);
+				}
+			}
+		});
 
 		// Set up the user interaction to manually show or hide the system UI.
 		contentView.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onClick(View view) {
-				if (TOGGLE_ON_CLICK) {
+			public void onClick(View view)
+			{
+				if (TOGGLE_ON_CLICK)
+				{
 					mSystemUiHider.hide();
-				} else {
+				} else
+				{
 					mSystemUiHider.show();
 				}
 			}
@@ -127,7 +132,8 @@ public class SplashActivity extends Activity {
 	}
 
 	@Override
-	protected void onPostCreate(Bundle savedInstanceState) {
+	protected void onPostCreate(Bundle savedInstanceState)
+	{
 		super.onPostCreate(savedInstanceState);
 
 		// Trigger the initial hide() shortly after the activity has been
@@ -143,8 +149,10 @@ public class SplashActivity extends Activity {
 	 */
 	View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
 		@Override
-		public boolean onTouch(View view, MotionEvent motionEvent) {
-			if (AUTO_HIDE) {
+		public boolean onTouch(View view, MotionEvent motionEvent)
+		{
+			if (AUTO_HIDE)
+			{
 				delayedHide(AUTO_HIDE_DELAY_MILLIS);
 			}
 			return false;
@@ -154,7 +162,8 @@ public class SplashActivity extends Activity {
 	Handler mHideHandler = new Handler();
 	Runnable mHideRunnable = new Runnable() {
 		@Override
-		public void run() {
+		public void run()
+		{
 			mSystemUiHider.hide();
 		}
 	};
@@ -163,26 +172,28 @@ public class SplashActivity extends Activity {
 	 * Schedules a call to hide() in [delay] milliseconds, canceling any
 	 * previously scheduled calls.
 	 */
-	private void delayedHide(int delayMillis) {
+	private void delayedHide(int delayMillis)
+	{
 		mHideHandler.removeCallbacks(mHideRunnable);
 		mHideHandler.postDelayed(mHideRunnable, delayMillis);
 	}
 
-	private class IntentLauncher extends Thread {
+	private class IntentLauncher extends Thread
+	{
 		@Override
 		/**
 		 * Sleep for some time and than start new activity.
 		 */
-		public void run() {
-			try {
+		public void run()
+		{
+			try
+			{
 				// let the splash screen show for two seconds
 				Thread.sleep(2000);
 
-				// check for account
-				boolean exists = profileExists();
-
 				// if there is a user, attempt to log him in
-				if (exists) {
+				if (profileExists())
+				{
 					FileInputStream fis1 = openFileInput("usr");
 					FileInputStream fis2 = openFileInput("pwd");
 
@@ -197,28 +208,30 @@ public class SplashActivity extends Activity {
 
 					String pwd = new String(pwd_b);
 					String usr = new String(usr_b);
-
-					if (WebReader.getInstance(usr, pwd).initLogin()) { 
-						// the user has successfully logged in. Quick, show them their things
+					
+					if (BannerWebReader.getInstance().activate(usr, pwd) != null)
+					{
 						new Thread(new Content()).start();
-						Intent intent = new Intent(SplashActivity.this,
-								InfoListActivity.class);
+						Intent intent = new Intent(SplashActivity.this, InfoListActivity.class);
 						SplashActivity.this.startActivity(intent);
 						SplashActivity.this.finish();
-					} else { // their log in fails. show them the log in box
-						exists = false;
+						return;
 					}
 				}
 
-				if (!exists) { // there is no user, so show the log in activity
-					Intent intent = new Intent(SplashActivity.this,
-							LoginActivity.class);
-					SplashActivity.this.startActivity(intent);
-					SplashActivity.this.finish();
-				}
+				Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+				SplashActivity.this.startActivity(intent);
+				SplashActivity.this.finish();
 
-			} catch (Exception e) {
+			} catch (Exception e)
+			{
 				Log.d("BB+", e.getMessage());
+				Log.d("BB+", "user had default information which was stored... deleting it now");
+				
+				deleteFile("usr");
+				deleteFile("pwd");
+				
+				new IntentLauncher().start();
 			}
 
 		}
@@ -229,15 +242,21 @@ public class SplashActivity extends Activity {
 	 * @return whether or not the user has a saved profile on their device, with
 	 *         valid data
 	 */
-	private boolean profileExists() {
+	private boolean profileExists()
+	{
 		String[] names = fileList();
 		boolean usr = false;
 		boolean pwd = false;
-		for (String s : names) {
+		for (String s : names)
+		{
 			if (s.equals("usr"))
+			{
 				usr = true;
+			}
 			if (s.equals("pwd"))
+			{
 				pwd = true;
+			}
 		}
 		return usr && pwd;
 	}

@@ -1,11 +1,7 @@
 package edu.wpi.tmathmeyer.mybannerwebwpi;
 
-import android.content.res.XmlResourceParser;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import edu.wpi.tmathmeyer.mybannerwebwpi.content.Content;
 import edu.wpi.tmathmeyer.mybannerwebwpi.page.Page;
 
@@ -14,7 +10,8 @@ import edu.wpi.tmathmeyer.mybannerwebwpi.page.Page;
  * contained in a {@link InfoListActivity} in two-pane mode (on tablets) or a
  * {@link InfoDetailActivity} on handsets.
  */
-public class InfoDetailFragment extends Fragment {
+public class InfoDetailFragment extends Fragment
+{
 	/**
 	 * The fragment argument representing the item ID that this fragment
 	 * represents.
@@ -30,25 +27,20 @@ public class InfoDetailFragment extends Fragment {
 	 * Mandatory empty constructor for the fragment manager to instantiate the
 	 * fragment (e.g. upon screen orientation changes).
 	 */
-	public InfoDetailFragment() {
+	public InfoDetailFragment()
+	{
 	}
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
-		if (getArguments().containsKey(ARG_ITEM_ID)) {
+		if (getArguments().containsKey(ARG_ITEM_ID))
+		{
 			// Load the dummy content specified by the fragment
 			// arguments. In a real-world scenario, use a Loader
 			// to load content from a content provider.
 			mPage = Content.item_map.get(getArguments().getString(ARG_ITEM_ID));
 		}
 	}
-/*
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		XmlResourceParser fragmentLayout = this.getResources().getLayout(mPage.layoutId);
-		View rootView = inflater.inflate(fragmentLayout, container, false);
-		return rootView;
-	}
-*/
 }
