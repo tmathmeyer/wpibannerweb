@@ -49,6 +49,7 @@ public abstract class BannerWebReader
 	{
 		private AbstractHttpClient client = new DefaultHttpClient();
 		private boolean retry = true;
+		private boolean badPassword = false;
 		
 		public ActivatedBannerWebReader(String username, String password)
         {
@@ -58,7 +59,6 @@ public abstract class BannerWebReader
 			try
 			{
 				sendGetRequest(LOGIN_PAGE);
-				Thread.sleep(1000);
 				HttpPost post = new HttpPost(LOGIN_PAGE);
 				post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
 				
@@ -67,6 +67,10 @@ public abstract class BannerWebReader
 				if (response.contains("http-equiv=\"refresh\""))
 				{
 					retry = false;
+				}
+				if (response.contains("Social Security"))
+				{
+					badPassword = true;
 				}
 			}
 			catch(Exception e)
@@ -113,6 +117,10 @@ public abstract class BannerWebReader
 				ActivatedBannerWebReader result = new ActivatedBannerWebReader(username, password);
 				while (result.retry)
 				{
+					if (result.badPassword)
+					{
+						throw new BannerwebException("bad password");
+					}
 					//try again... bannerweb is shitty like that
 					Thread.sleep(1000);
 					result = new ActivatedBannerWebReader(username, password);
@@ -122,8 +130,7 @@ public abstract class BannerWebReader
 			}
 			catch(Exception e)
 			{
-				Log.e(TAG, e.getClass().getSimpleName());
-				Log.e(TAG, "could not login ... might we need to try again?");
+				Log.d(TAG, "couldn't login", e);
 				return null;
 			}
 		}

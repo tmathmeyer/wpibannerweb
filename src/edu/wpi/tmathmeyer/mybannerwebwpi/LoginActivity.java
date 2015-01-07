@@ -227,7 +227,6 @@ public class LoginActivity extends Activity
 		{
 			mAuthTask = null;
 			showProgress(false);
-			int errcode = 0;
 
 			if (success)
 			{
@@ -248,12 +247,7 @@ public class LoginActivity extends Activity
 					fos.close();
 				} catch (Exception e)
 				{
-					e.getStackTrace();
-					for (StackTraceElement ste : e.getStackTrace())
-					{
-						Log.d("BB+", ">> " + ste.toString());
-					}
-					Log.d("BB+", e.toString());
+					Log.d(BannerWebReader.TAG, "uh oh", e);
 				}
 				new Thread(new Content()).start();
 
@@ -264,7 +258,7 @@ public class LoginActivity extends Activity
 			else
 			{
 				BannerWebReader.deactivate();
-				mPasswordView.setError(getString(R.string.error_incorrect_password) + "(" + errcode + ")");
+				mPasswordView.setError(getString(R.string.error_incorrect_password));
 				mPasswordView.requestFocus();
 			}
 		}
