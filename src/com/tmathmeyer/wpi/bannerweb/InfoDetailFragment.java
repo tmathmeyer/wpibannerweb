@@ -1,0 +1,47 @@
+package com.tmathmeyer.wpi.bannerweb;
+
+import com.tmathmeyer.wpi.bannerweb.content.Content;
+import com.tmathmeyer.wpi.bannerweb.page.Page;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+
+/**
+ * A fragment representing a single Info detail screen. This fragment is either
+ * contained in a {@link InfoListActivity} in two-pane mode (on tablets) or a
+ * {@link InfoDetailActivity} on handsets.
+ */
+public class InfoDetailFragment extends Fragment
+{
+	/**
+	 * The fragment argument representing the item ID that this fragment
+	 * represents.
+	 */
+	public static final String ARG_ITEM_ID = "item_id";
+
+	/**
+	 * The dummy content this fragment is presenting.
+	 */
+	private Page mPage;
+
+	/**
+	 * Mandatory empty constructor for the fragment manager to instantiate the
+	 * fragment (e.g. upon screen orientation changes).
+	 */
+	public InfoDetailFragment()
+	{
+	}
+
+	@Override
+	public void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		if (getArguments().containsKey(ARG_ITEM_ID))
+		{
+			// Load the dummy content specified by the fragment
+			// arguments. In a real-world scenario, use a Loader
+			// to load content from a content provider.
+			mPage = Content.item_map.get(getArguments().getString(ARG_ITEM_ID));
+		}
+	}
+}
