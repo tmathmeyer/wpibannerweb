@@ -5,8 +5,8 @@
     android:versionName="1.0.1" >
 
     <uses-sdk
-        android:minSdkVersion="19"
-        android:targetSdkVersion="23" />
+        android:minSdkVersion="21"
+        android:targetSdkVersion="21" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -16,16 +16,16 @@
         android:label="MyBannerweb"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.tmathmeyer.wpi.bannerweb.HomePage"
+            android:name=".HomePage"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.tmathmeyer.wpi.bannerweb.LoginActivity"
+            android:name=".LoginActivity"
             android:label="@string/title_activity_login"
             android:windowSoftInputMode="adjustResize|stateVisible" >
         </activity>
         <activity
-            android:name="com.tmathmeyer.wpi.bannerweb.SplashActivity"
+            android:name=".SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="MyBannerweb"
             android:theme="@style/FullscreenTheme" >
@@ -36,20 +36,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.tmathmeyer.wpi.bannerweb.browser.InfoListActivity"
+            android:name=".browser.InfoListActivity"
             android:label="@string/title_info_list" >
         </activity>
         <activity
-            android:name="com.tmathmeyer.wpi.bannerweb.InfoListActivity"
+            android:name=".InfoListActivity"
             android:label="@string/title_info_list" >
         </activity>
         <activity
-            android:name="com.tmathmeyer.wpi.bannerweb.InfoDetailActivity"
+            android:name=".InfoDetailActivity"
             android:label="@string/title_info_detail"
             android:parentActivityName=".InfoListActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".InfoListActivity" />
+        </activity>
+        <activity
+            android:name=".InformationHubActivity"
+            android:label="@string/title_activity_information_hub" >
+        </activity>
+        <activity
+            android:name=".InfoHub"
+            android:label="@string/title_activity_info_hub" >
         </activity>
     </application>
 

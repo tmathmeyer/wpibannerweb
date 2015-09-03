@@ -10,5 +10,8 @@
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_info_list">Infos</string>
     <string name="title_info_detail">Info Detail</string>
+    <string name="title_activity_information_hub">InformationHubActivity</string>
+    <string name="Student">Student</string>
+    <string name="title_activity_info_hub">InfoHub</string>
 
 </resources>

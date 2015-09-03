@@ -8,8 +8,7 @@ import java.util.Map;
 
 import org.apache.http.client.ClientProtocolException;
 
-import com.tmathmeyer.wpi.bannerweb.BannerwebException;
-import com.tmathmeyer.wpi.bannerweb.ConnectionManager;
+import com.tmathmeyer.wpi.bannerweb.HTTPBrowser;
 import com.tmathmeyer.wpi.bannerweb.page.AdvisorInfo;
 import com.tmathmeyer.wpi.bannerweb.page.CalendarSchedule;
 import com.tmathmeyer.wpi.bannerweb.page.MailBox;
@@ -26,52 +25,52 @@ import android.util.Log;
 public class Content implements Runnable
 {
 
-	public static List<Page> items = new ArrayList<Page>();
-	public static Map<String, Page> item_map = new HashMap<String, Page>();
+    public static List<Page> items = new ArrayList<Page>();
+    public static Map<String, Page> item_map = new HashMap<String, Page>();
 
-	static
-	{
-		addPage(Page.newInstance(MailBox.class, "Mail Box Information", "hwwkboxs.P_ViewBoxs"));
-		// addPage(Page.newInstance(MealPlan.class, "Meal Plan Balances",
-		// "hwwkcbrd.P_Display"));
-		addPage(Page.newInstance(AdvisorInfo.class, "Academic Advisor Information", "hwwksadv.P_Summary"));
-		addPage(Page.newInstance(CalendarSchedule.class, "Calendar Schedule",
-		        "bwskfshd.P_CrseSchd?start_date_in=[DATE]"));
-		// addPage((DetailSchedule)Page.newInstance("Detail Schedule",
-		// "bwskfshd.P_CrseSchdDetl"));
-	}
+    static
+    {
+        addPage(Page.newInstance(MailBox.class, "Mail Box Information", "hwwkboxs.P_ViewBoxs"));
+        // addPage(Page.newInstance(MealPlan.class, "Meal Plan Balances",
+        // "hwwkcbrd.P_Display"));
+        addPage(Page.newInstance(AdvisorInfo.class, "Academic Advisor Information", "hwwksadv.P_Summary"));
+        addPage(Page.newInstance(CalendarSchedule.class, "Calendar Schedule",
+                "bwskfshd.P_CrseSchd?start_date_in=[DATE]"));
+        // addPage((DetailSchedule)Page.newInstance("Detail Schedule",
+        // "bwskfshd.P_CrseSchdDetl"));
+    }
 
-	private static void addPage(Page page)
-	{
-		items.add(page);
-		item_map.put(page.getUrl(), page);
-	}
+    private static void addPage(Page page)
+    {
+        items.add(page);
+        item_map.put(page.getUrl(), page);
+    }
 
-	public static void loadResources() throws ClientProtocolException, IOException, BannerwebException
-	{
-		for (Page i : items)
-		{
-			loadResource(i);
-		}
-	}
-
-	public static void loadResource(Page page) throws ClientProtocolException, IOException, BannerwebException
-	{
-		String pageHtml = ConnectionManager.getInstance().getPage("https://bannerweb.wpi.edu/pls/prod/" + page.getUrl());
-		page.loadContent(pageHtml);
-	}
-
-	@Override
-	public void run()
-	{
-		try
+    public static void loadResources() throws ClientProtocolException, IOException
+    {
+        for (Page i : items)
         {
-	        Content.loadResources();
+            loadResource(i);
         }
-		catch (Exception e)
+    }
+
+    public static void loadResource(Page page) throws ClientProtocolException, IOException
+    {
+        String pageHtml = HTTPBrowser.getInstance().getPage("https://bannerweb.wpi.edu/pls/prod/" + page.getUrl());
+        page.loadContent(pageHtml);
+    }
+
+    @Override
+    public void run()
+    {
+        try
         {
-        	Log.e("BB+", e.toString());
-	        e.printStackTrace();
+            Content.loadResources();
         }
-	}
+        catch (Exception e)
+        {
+            Log.e("BB+", e.toString());
+            e.printStackTrace();
+        }
+    }
 }
