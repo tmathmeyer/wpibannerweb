@@ -1,8 +1,6 @@
 package com.tmathmeyer.wpi.bannerweb;
 
 import java.io.FileInputStream;
-
-import com.tmathmeyer.wpi.bannerweb.content.Content;
 import com.tmathmeyer.wpi.bannerweb.util.SystemUiHider;
 
 import android.annotation.TargetApi;
@@ -145,10 +143,11 @@ public class SplashActivity extends Activity
         {
             try
             {
+                Thread.sleep(1500); // show screen for 1.5 seconds
                 // if there is a user, attempt to log him in
                 if (profileExists())
                 {
-                    Thread.sleep(1500); // show screen for 1.5 seconds
+                    
                     FileInputStream fis1 = openFileInput("usr");
                     FileInputStream fis2 = openFileInput("pwd");
 
@@ -167,7 +166,6 @@ public class SplashActivity extends Activity
                     HTTPBrowser.getInstance().setCredentials(usr, pwd);
                     if (HTTPBrowser.getInstance().logIn())
                     {
-                        new Thread(new Content()).start();
                         Intent intent = new Intent(SplashActivity.this, InfoHub.class);
                         SplashActivity.this.startActivity(intent);
                         SplashActivity.this.finish();

@@ -2,8 +2,6 @@ package com.tmathmeyer.wpi.bannerweb;
 
 import java.io.FileOutputStream;
 
-import com.tmathmeyer.wpi.bannerweb.content.Content;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -223,20 +221,26 @@ public class LoginActivity extends Activity
 
             if (success)
             {
-                try (FileOutputStream usr = openFileOutput("usr", Context.MODE_PRIVATE);
-                     FileOutputStream pwd = openFileOutput("pwd", Context.MODE_PRIVATE))
+                try
                 {
                     deleteFile("usr");
-                    usr.write(mEmail.length());
-                    usr.write(mEmail.getBytes());
-                    pwd.write(mPassword.length());
-                    pwd.write(mPassword.getBytes());
+
+                    FileOutputStream fos;
+
+                    fos = openFileOutput("usr", Context.MODE_PRIVATE);
+                    fos.write(mEmail.length());
+                    fos.write(mEmail.getBytes());
+                    fos.close();
+
+                    fos = openFileOutput("pwd", Context.MODE_PRIVATE);
+                    fos.write(mPassword.length());
+                    fos.write(mPassword.getBytes());
+                    fos.close();
                 }
                 catch (Exception e)
                 {
 
                 }
-                new Thread(new Content()).start();
                 Intent intent = new Intent(LoginActivity.this, InfoHub.class);
                 LoginActivity.this.startActivity(intent);
                 LoginActivity.this.finish();

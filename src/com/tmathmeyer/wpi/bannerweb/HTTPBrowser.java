@@ -19,6 +19,8 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.message.BasicNameValuePair;
 
+import com.tmathmeyer.wpi.bannerweb.page.Page;
+
 public class HTTPBrowser
 {
     public static final String HOME_PAGE = "https://bannerweb.wpi.edu/pls/prod/twbkwbis.P_WWWLogin";
@@ -86,11 +88,21 @@ public class HTTPBrowser
 
         String result = getPage(LOGIN_PAGE, HOME_PAGE, "POST", params);
 
-        return result.contains("Welcome");
+        if (result.contains("Welcome"))
+        {
+            for(Page p : Page.getPageSet())
+            {
+                p.update();
+            }
+            return true;
+        }
+        return false;
     }
 
     public boolean logOut()
     {
+        user = null;
+        pass = null;
         InfoHub.getInfoHub().deleteFile("usr");
         InfoHub.getInfoHub().deleteFile("pwd");
         return true;
@@ -99,6 +111,11 @@ public class HTTPBrowser
     public String getPage(String URL) throws IOException
     {
         return getPage(URL, last_page, "GET", null);
+    }
+    
+    public String basicPost(String url, List<NameValuePair> params) throws IOException
+    {
+        return getPage(url, last_page, "POST", params);
     }
 
     public String getPage(String URL, String referer, String method, List<NameValuePair> params) throws IOException

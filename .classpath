@@ -12,5 +12,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/cardview"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/recyclerview"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/android-support-v7-appcompat"/>
+	<classpathentry kind="lib" path="/BetterTemplates/lib/gson-2.3.1.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

@@ -1,74 +1,99 @@
+
 package com.tmathmeyer.wpi.bannerweb.page;
 
-import com.tmathmeyer.wpi.bannerweb.R;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
-import android.os.Bundle;
-import android.text.Html;
-import android.util.Log;
-import android.view.LayoutInflater;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import com.tmathmeyer.wpi.bannerweb.InfoHub;
+
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 public class MealPlan extends Page
-{
+{   
+    private Map<String, String> contentMap = new HashMap<>();
+    private LinearLayout cardViewContents = null;
+    
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
+    @SuppressWarnings("serial")
+    public Map<String, String> getUrlsByTag()
     {
-        super.onCreate(savedInstanceState);
+        return new HashMap<String, String>(){{
+           put("card_balances", "https://bannerweb.wpi.edu/pls/prod/hwwkcbrd.P_Display");
+        }};
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    public void loadContent(Map<String, String> pages)
     {
-        return inflater.inflate(R.layout.meal_plan, container, false);
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState)
-    {
-        super.onActivityCreated(savedInstanceState);
-
-    }
-
-    public void loadContent(String html)
-    {
-        try
+        Document doc = Jsoup.parse(pages.get("card_balances"), "https://bannerweb.wpi.edu/pls/prod/");
+        
+        Element displayTable = doc.getElementsByClass("datadisplaytable").get(0);
+        Elements tableEntries = displayTable.getElementsByTag("TR");
+        
+        for(Element e : tableEntries)
         {
-            html = html.substring(html.indexOf("datadisplaytable") + 20);
-            html = html.substring(0, html.indexOf("</TABLE"));
-            html = Html.fromHtml("<table>" + html + "</table>").toString();
-            html = html.replaceAll("AccountBalanceDate Last Used", "");
-            String[] lines = html.split("\n");
-            String message = "Type                Balance";
-            for (int i = 0; i < lines.length - 3; i += 3)
+            Elements tableRow = e.getElementsByClass("dddefault");
+            if (tableRow.size() >= 2)
             {
-                message += "\n" + lines[i] + mult(20 - lines[i].length(), " ") + lines[i + 2];
-            }
-            System.out.println(message);
-            //this.content = message;
-        }
-        catch (Exception e)
-        {
-            for (StackTraceElement k : e.getStackTrace())
-            {
-                Log.d("BB+", "String Error!: " + k.toString());
+                String account = tableRow.get(0).text();
+                String balance = tableRow.get(1).text();
+                
+                contentMap.put(account, balance);
             }
         }
+        cardViewContents = null;
     }
-
-    public void fillContent()
+    
+    @Override
+    public View getCardViewContents()
     {
+        if (cardViewContents == null)
+        {
+            cardViewContents = new LinearLayout(InfoHub.getInfoHub());
+            cardViewContents.setOrientation(LinearLayout.VERTICAL);
+            
+            TextView title = new TextView(InfoHub.getInfoHub());
+            title.setText("ID Card Balances");
+            title.setTextSize(TypedValue.COMPLEX_UNIT_PX, 80);
+            title.setPadding(20, 20, 20, 20);
+            title.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+            cardViewContents.addView(title);
+            
+            TableLayout cardViewContentsTable = new TableLayout(InfoHub.getInfoHub());
+            cardViewContentsTable.setId(1231);
+            
+            for(Entry<String, String> kvp : contentMap.entrySet())
+            {
+                TableRow row = new TableRow(InfoHub.getInfoHub());
+                TextView key = new TextView(InfoHub.getInfoHub());
+                TextView val = new TextView(InfoHub.getInfoHub());
+                
+                key.setText(kvp.getKey());
+                val.setText(kvp.getValue());
 
-    }
-
-    private static String mult(int i, String s)
-    {
-        Log.d("BB+", i + "");
-        if (i <= 1)
-            return s;
-        if (i % 2 == 1)
-            return s + mult(i - 1, s);
-        return mult(i / 2, s + s);
+                key.setPadding(20, 20, 20, 20);
+                val.setPadding(20, 20, 20, 20);
+                
+                row.addView(key);
+                row.addView(val);
+                
+                cardViewContentsTable.addView(row);
+            }
+            cardViewContents.addView(cardViewContentsTable);
+        }
+        return cardViewContents;
     }
 }

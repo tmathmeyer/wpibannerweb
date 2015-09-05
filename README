@@ -1,0 +1,22 @@
+#MyBannerweb
+The first Bannerweb application for android!
+
+##Current Features
+ - Advisor Info
+ - mailbox info
+ - card balances
+ - transcript
+
+##Features Needed
+ - Account Information
+ 	- ID Photo
+ - University Info
+ 	- course reports
+ - Schedule Information
+	- calendar view
+	- list view
+	- add/drop functionality
+ - Employee
+	- view paystub
+	- view earnings
+	- submit timesheet 

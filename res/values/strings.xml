@@ -3,6 +3,7 @@
 
     <string name="app_name">WPIWEB</string>
     <string name="action_settings">Settings</string>
+    <string name="action_logout">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_splash_acvivity">SplashAcvivity</string>
     <string name="dummy_button">Dummy Button</string>

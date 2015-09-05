@@ -1,71 +1,48 @@
 package com.tmathmeyer.wpi.bannerweb.page;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import com.tmathmeyer.wpi.bannerweb.HTTPBrowser;
 
-public abstract class Page extends Fragment
+import android.view.View;
+
+public abstract class Page
 {
-
-    private String mUrl;
-    private String mTitle;
-    protected HashMap<String, String> contentMap = new HashMap<String, String>();
-
-    public String getUrl()
+    public abstract View getCardViewContents();
+    public abstract void loadContent(Map<String, String> htmlPages);
+    public abstract Map<String, String> getUrlsByTag();
+    
+    private static Set<Page> pages = null;
+    
+    public Page update() throws IOException
     {
-        return mUrl;
-    }
-
-    public void setUrl(String url)
-    {
-        this.mUrl = url;
-    }
-
-    public String getTitle()
-    {
-        return mTitle;
-    }
-
-    public void setTitle(String title)
-    {
-        this.mTitle = title;
-    }
-
-    public abstract void loadContent(String html);
-
-    public abstract void fillContent();
-
-    public String toString()
-    {
-        return mTitle;
-    }
-
-    public static Page newInstance(Class<?> pageType, String title, String url)
-    {
-        try
+        Map<String, String> result = new HashMap<>();
+        for(Entry<String, String> kvp : getUrlsByTag().entrySet())
         {
-            Page newPage = (Page) pageType.newInstance();
-            newPage.setUrl(url);
-            newPage.setTitle(title);
-            return newPage;
+            result.put(kvp.getKey(), HTTPBrowser.getInstance().getPage(kvp.getValue()));
         }
-        catch (java.lang.InstantiationException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IllegalAccessException e)
-        {
-            e.printStackTrace();
-        }
-        return null;
+        loadContent(result);
+        return this;
     }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState)
+    
+    @SuppressWarnings("serial")
+    public static Set<Page> getPageSet()
     {
-        super.onCreate(savedInstanceState);
-        setRetainInstance(true);
+        if (pages == null)
+        {
+            pages = new HashSet<Page>()
+            {{
+                add(new AdvisorInfo());
+                add(new MailBox());
+                add(new MealPlan());
+                add(new Transcript());
+            }};
+        }
+        return pages;
     }
-
 }
